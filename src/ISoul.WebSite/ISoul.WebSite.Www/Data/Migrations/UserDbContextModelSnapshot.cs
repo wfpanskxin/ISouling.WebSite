@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ISoul.WebSite.Www.Data.Migrations
 {
@@ -14,9 +15,10 @@ namespace ISoul.WebSite.Www.Data.Migrations
                 .HasAnnotation("ProductVersion", "1.0.0-rc3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("IdentityRole", b =>
+            modelBuilder.Entity<IdentityRole<int>>(b =>
             {
-                b.Property<string>("Id");
+                b.Property<int>("Id")
+                    .UseSqlServerIdentityColumn();
 
                 b.Property<string>("ConcurrencyStamp")
                     .IsConcurrencyToken();
@@ -35,35 +37,35 @@ namespace ISoul.WebSite.Www.Data.Migrations
                 b.ToTable("tbl_Roles");
             });
 
-            modelBuilder.Entity("IdentityRoleClaim", b =>
+            modelBuilder.Entity<IdentityRoleClaim<int>>(b =>
+           {
+               b.Property<int>("Id")
+                    .UseSqlServerIdentityColumn();
+
+               b.Property<string>("ClaimType");
+
+               b.Property<string>("ClaimValue");
+
+               b.Property<int>("RoleId")
+                   .IsRequired();
+
+               b.HasKey("Id");
+
+               b.HasIndex("RoleId");
+
+               b.ToTable("tbl_RoleClaims");
+           });
+
+            modelBuilder.Entity<IdentityUserClaim<int>>(b =>
             {
                 b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+                    .UseSqlServerIdentityColumn();
 
                 b.Property<string>("ClaimType");
 
                 b.Property<string>("ClaimValue");
 
-                b.Property<string>("RoleId")
-                    .IsRequired();
-
-                b.HasKey("Id");
-
-                b.HasIndex("RoleId");
-
-                b.ToTable("tbl_RoleClaims");
-            });
-
-            modelBuilder.Entity("IdentityUserClaim", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
-
-                b.Property<string>("ClaimType");
-
-                b.Property<string>("ClaimValue");
-
-                b.Property<string>("UserId")
+                b.Property<int>("UserId")
                     .IsRequired();
 
                 b.HasKey("Id");
@@ -73,57 +75,58 @@ namespace ISoul.WebSite.Www.Data.Migrations
                 b.ToTable("tbl_UserClaims");
             });
 
-            modelBuilder.Entity("IdentityUserLogin", b =>
+            modelBuilder.Entity<IdentityUserLogin<int>>(b =>
+           {
+               b.Property<string>("LoginProvider");
+
+               b.Property<string>("ProviderKey");
+
+               b.Property<string>("ProviderDisplayName");
+
+               b.Property<int>("UserId")
+                   .IsRequired();
+
+               b.HasKey("LoginProvider", "ProviderKey");
+
+               b.HasIndex("UserId");
+
+               b.ToTable("tbl_UserLogins");
+           });
+
+            modelBuilder.Entity<IdentityUserRole<int>>(b =>
+           {
+               b.Property<int>("UserId");
+
+               b.Property<int>("RoleId");
+
+               b.HasKey("UserId", "RoleId");
+
+               b.HasIndex("RoleId");
+
+               b.HasIndex("UserId");
+
+               b.ToTable("tbl_UserRoles");
+           });
+
+            modelBuilder.Entity<IdentityUserToken<int>>(b =>
+           {
+               b.Property<int>("UserId");
+
+               b.Property<string>("LoginProvider");
+
+               b.Property<string>("Name");
+
+               b.Property<string>("Value");
+
+               b.HasKey("UserId", "LoginProvider", "Name");
+
+               b.ToTable("tbl_UserTokens");
+           });
+
+            modelBuilder.Entity<IdentityUser<int>>(b =>
             {
-                b.Property<string>("LoginProvider");
-
-                b.Property<string>("ProviderKey");
-
-                b.Property<string>("ProviderDisplayName");
-
-                b.Property<string>("UserId")
-                    .IsRequired();
-
-                b.HasKey("LoginProvider", "ProviderKey");
-
-                b.HasIndex("UserId");
-
-                b.ToTable("tbl_UserLogins");
-            });
-
-            modelBuilder.Entity("IdentityUserRole", b =>
-            {
-                b.Property<string>("UserId");
-
-                b.Property<string>("RoleId");
-
-                b.HasKey("UserId", "RoleId");
-
-                b.HasIndex("RoleId");
-
-                b.HasIndex("UserId");
-
-                b.ToTable("tbl_UserRoles");
-            });
-
-            modelBuilder.Entity("IdentityUserToken", b =>
-            {
-                b.Property<string>("UserId");
-
-                b.Property<string>("LoginProvider");
-
-                b.Property<string>("Name");
-
-                b.Property<string>("Value");
-
-                b.HasKey("UserId", "LoginProvider", "Name");
-
-                b.ToTable("tbl_UserTokens");
-            });
-
-            modelBuilder.Entity("IdentityUser", b =>
-            {
-                b.Property<string>("Id");
+                b.Property<int>("Id")
+                    .UseSqlServerIdentityColumn();
 
                 b.Property<int>("AccessFailedCount");
 
@@ -170,38 +173,38 @@ namespace ISoul.WebSite.Www.Data.Migrations
                 b.ToTable("tbl_Users");
             });
 
-            modelBuilder.Entity("IdentityRoleClaim", b =>
-            {
-                b.HasOne("IdentityRole")
-                    .WithMany("Claims")
-                    .HasForeignKey("RoleId")
-                    .OnDelete(DeleteBehavior.Cascade);
-            });
+            modelBuilder.Entity<IdentityRoleClaim<int>>(b =>
+           {
+               b.HasOne(typeof(IdentityRole<int>))
+                   .WithMany("Claims")
+                   .HasForeignKey("RoleId")
+                   .OnDelete(DeleteBehavior.Cascade);
+           });
 
-            modelBuilder.Entity("IdentityUserClaim", b =>
-            {
-                b.HasOne("IdentityUser")
-                    .WithMany("Claims")
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade);
-            });
+            modelBuilder.Entity<IdentityUserClaim<int>>(b =>
+           {
+               b.HasOne(typeof(IdentityUser<int>))
+                   .WithMany("Claims")
+                   .HasForeignKey("UserId")
+                   .OnDelete(DeleteBehavior.Cascade);
+           });
 
-            modelBuilder.Entity("IdentityUserLogin", b =>
+            modelBuilder.Entity<IdentityUserLogin<int>>(b =>
             {
-                b.HasOne("IdentityUser")
+                b.HasOne(typeof(IdentityUser<int>))
                     .WithMany("Logins")
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade);
+                   .HasForeignKey("UserId")
+                   .OnDelete(DeleteBehavior.Cascade);
             });
 
-            modelBuilder.Entity("IdentityUserRole", b =>
+            modelBuilder.Entity<IdentityUserRole<int>>(b =>
             {
-                b.HasOne("IdentityRole")
+                b.HasOne(typeof(IdentityRole<int>))
                     .WithMany("Users")
-                    .HasForeignKey("RoleId")
-                    .OnDelete(DeleteBehavior.Cascade);
+                   .HasForeignKey("RoleId")
+                   .OnDelete(DeleteBehavior.Cascade);
 
-                b.HasOne("IdentityUser")
+                b.HasOne(typeof(IdentityUser<int>))
                     .WithMany("Roles")
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade);

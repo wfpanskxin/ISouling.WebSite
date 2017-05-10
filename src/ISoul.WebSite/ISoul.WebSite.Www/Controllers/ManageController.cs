@@ -14,16 +14,16 @@ namespace ISoul.WebSite.Www.Controllers
     [Authorize]
     public class ManageController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser<int>> _userManager;
+        private readonly SignInManager<IdentityUser<int>> _signInManager;
         private readonly string _externalCookieScheme;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
 
         public ManageController(
-          UserManager<IdentityUser> userManager,
-          SignInManager<IdentityUser> signInManager,
+          UserManager<IdentityUser<int>> userManager,
+          SignInManager<IdentityUser<int>> signInManager,
           IOptions<IdentityCookieOptions> identityCookieOptions,
           IEmailSender emailSender,
           ISmsSender smsSender,
@@ -361,7 +361,7 @@ namespace ISoul.WebSite.Www.Controllers
             Error
         }
 
-        private Task<IdentityUser> GetCurrentUserAsync()
+        private Task<IdentityUser<int>> GetCurrentUserAsync()
         {
             return _userManager.GetUserAsync(HttpContext.User);
         }

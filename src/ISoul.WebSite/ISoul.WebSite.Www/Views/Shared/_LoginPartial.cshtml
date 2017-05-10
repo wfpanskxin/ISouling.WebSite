@@ -2,8 +2,8 @@
 @using ISoul.WebSite.Www.Models
 @using Microsoft.AspNetCore.Identity.EntityFrameworkCore
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser<int>> SignInManager
+@inject UserManager<IdentityUser<int>> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {

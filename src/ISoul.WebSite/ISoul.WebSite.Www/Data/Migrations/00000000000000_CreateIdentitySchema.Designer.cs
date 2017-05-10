@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -16,9 +17,10 @@ namespace ISoul.WebSite.Www.Data.Migrations
                 .HasAnnotation("ProductVersion", "1.0.0-rc3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("IdentityRole", b =>
+            modelBuilder.Entity<IdentityRole<int>>(b =>
             {
-                b.Property<string>("Id");
+                b.Property<int>("Id")
+                    .UseSqlServerIdentityColumn();
 
                 b.Property<string>("ConcurrencyStamp")
                     .IsConcurrencyToken();
@@ -37,16 +39,16 @@ namespace ISoul.WebSite.Www.Data.Migrations
                 b.ToTable("tbl_Roles");
             });
 
-            modelBuilder.Entity("IdentityRoleClaim", b =>
+            modelBuilder.Entity<IdentityRoleClaim<int>>(b =>
             {
                 b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+                    .UseSqlServerIdentityColumn();
 
                 b.Property<string>("ClaimType");
 
                 b.Property<string>("ClaimValue");
 
-                b.Property<string>("RoleId")
+                b.Property<int>("RoleId")
                     .IsRequired();
 
                 b.HasKey("Id");
@@ -56,16 +58,16 @@ namespace ISoul.WebSite.Www.Data.Migrations
                 b.ToTable("tbl_RoleClaims");
             });
 
-            modelBuilder.Entity("IdentityUserClaim", b =>
+            modelBuilder.Entity<IdentityUserClaim<int>>(b =>
             {
                 b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+                    .UseSqlServerIdentityColumn();
 
                 b.Property<string>("ClaimType");
 
                 b.Property<string>("ClaimValue");
 
-                b.Property<string>("UserId")
+                b.Property<int>("UserId")
                     .IsRequired();
 
                 b.HasKey("Id");
@@ -75,7 +77,7 @@ namespace ISoul.WebSite.Www.Data.Migrations
                 b.ToTable("tbl_UserClaims");
             });
 
-            modelBuilder.Entity("IdentityUserLogin", b =>
+            modelBuilder.Entity<IdentityUserLogin<int>>(b =>
             {
                 b.Property<string>("LoginProvider");
 
@@ -83,7 +85,7 @@ namespace ISoul.WebSite.Www.Data.Migrations
 
                 b.Property<string>("ProviderDisplayName");
 
-                b.Property<string>("UserId")
+                b.Property<int>("UserId")
                     .IsRequired();
 
                 b.HasKey("LoginProvider", "ProviderKey");
@@ -93,11 +95,11 @@ namespace ISoul.WebSite.Www.Data.Migrations
                 b.ToTable("tbl_UserLogins");
             });
 
-            modelBuilder.Entity("IdentityUserRole", b =>
+            modelBuilder.Entity<IdentityUserRole<int>>(b =>
             {
-                b.Property<string>("UserId");
+                b.Property<int>("UserId");
 
-                b.Property<string>("RoleId");
+                b.Property<int>("RoleId");
 
                 b.HasKey("UserId", "RoleId");
 
@@ -108,9 +110,9 @@ namespace ISoul.WebSite.Www.Data.Migrations
                 b.ToTable("tbl_UserRoles");
             });
 
-            modelBuilder.Entity("IdentityUserToken", b =>
+            modelBuilder.Entity<IdentityUserToken<int>>(b =>
             {
-                b.Property<string>("UserId");
+                b.Property<int>("UserId");
 
                 b.Property<string>("LoginProvider");
 
@@ -123,9 +125,10 @@ namespace ISoul.WebSite.Www.Data.Migrations
                 b.ToTable("tbl_UserTokens");
             });
 
-            modelBuilder.Entity("IdentityUser", b =>
+            modelBuilder.Entity<IdentityUser<int>>(b =>
             {
-                b.Property<string>("Id");
+                b.Property<int>("Id")
+                    .UseSqlServerIdentityColumn();
 
                 b.Property<int>("AccessFailedCount");
 
@@ -172,38 +175,38 @@ namespace ISoul.WebSite.Www.Data.Migrations
                 b.ToTable("tbl_Users");
             });
 
-            modelBuilder.Entity("IdentityRoleClaim", b =>
+            modelBuilder.Entity<IdentityRoleClaim<int>>(b =>
             {
-                b.HasOne("IdentityRole")
+                b.HasOne(typeof(IdentityRole<int>))
                     .WithMany("Claims")
                     .HasForeignKey("RoleId")
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
-            modelBuilder.Entity("IdentityUserClaim", b =>
+            modelBuilder.Entity<IdentityUserClaim<int>>(b =>
             {
-                b.HasOne("IdentityUser")
+                b.HasOne(typeof(IdentityUser<int>))
                     .WithMany("Claims")
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
-            modelBuilder.Entity("IdentityUserLogin", b =>
+            modelBuilder.Entity<IdentityUserLogin<int>>(b =>
             {
-                b.HasOne("IdentityUser")
+                b.HasOne(typeof(IdentityUser<int>))
                     .WithMany("Logins")
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
-            modelBuilder.Entity("IdentityUserRole", b =>
+            modelBuilder.Entity<IdentityUserRole<int>>(b =>
             {
-                b.HasOne("IdentityRole")
+                b.HasOne(typeof(IdentityRole<int>))
                     .WithMany("Users")
                     .HasForeignKey("RoleId")
                     .OnDelete(DeleteBehavior.Cascade);
 
-                b.HasOne("IdentityUser")
+                b.HasOne(typeof(IdentityUser<int>))
                     .WithMany("Roles")
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade);
