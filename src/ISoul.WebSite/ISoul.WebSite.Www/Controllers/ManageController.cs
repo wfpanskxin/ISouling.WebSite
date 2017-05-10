@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ISoul.WebSite.Www.Models.ManageViewModels;
+using ISoul.WebSite.Www.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using ISoul.WebSite.Www.Models;
-using ISoul.WebSite.Www.Models.ManageViewModels;
-using ISoul.WebSite.Www.Services;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ISoul.WebSite.Www.Controllers
 {

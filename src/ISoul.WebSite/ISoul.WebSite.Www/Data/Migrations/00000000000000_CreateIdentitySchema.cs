@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace ISoul.WebSite.Www.Data.Migrations
 {
@@ -12,7 +9,7 @@ namespace ISoul.WebSite.Www.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AspNetRoles",
+                name: "tbl_Roles",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -26,7 +23,7 @@ namespace ISoul.WebSite.Www.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserTokens",
+                name: "tbl_UserTokens",
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
@@ -40,7 +37,7 @@ namespace ISoul.WebSite.Www.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
+                name: "tbl_Users",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -65,7 +62,7 @@ namespace ISoul.WebSite.Www.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetRoleClaims",
+                name: "tbl_RoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -80,13 +77,13 @@ namespace ISoul.WebSite.Www.Data.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
+                        principalTable: "tbl_Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserClaims",
+                name: "tbl_UserClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -101,13 +98,13 @@ namespace ISoul.WebSite.Www.Data.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUserClaims_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        principalTable: "tbl_Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserLogins",
+                name: "tbl_UserLogins",
                 columns: table => new
                 {
                     LoginProvider = table.Column<string>(nullable: false),
@@ -121,13 +118,13 @@ namespace ISoul.WebSite.Www.Data.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUserLogins_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        principalTable: "tbl_Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserRoles",
+                name: "tbl_UserRoles",
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
@@ -139,55 +136,55 @@ namespace ISoul.WebSite.Www.Data.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
+                        principalTable: "tbl_Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        principalTable: "tbl_Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
-                table: "AspNetRoles",
+                table: "tbl_Roles",
                 column: "NormalizedName");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
-                table: "AspNetRoleClaims",
+                table: "tbl_RoleClaims",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserClaims_UserId",
-                table: "AspNetUserClaims",
+                table: "tbl_UserClaims",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserLogins_UserId",
-                table: "AspNetUserLogins",
+                table: "tbl_UserLogins",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserRoles_RoleId",
-                table: "AspNetUserRoles",
+                table: "tbl_UserRoles",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserRoles_UserId",
-                table: "AspNetUserRoles",
+                table: "tbl_UserRoles",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
-                table: "AspNetUsers",
+                table: "tbl_Users",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
-                table: "AspNetUsers",
+                table: "tbl_Users",
                 column: "NormalizedUserName",
                 unique: true);
         }
@@ -195,25 +192,25 @@ namespace ISoul.WebSite.Www.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AspNetRoleClaims");
+                name: "tbl_RoleClaims");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserClaims");
+                name: "tbl_UserClaims");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserLogins");
+                name: "tbl_UserLogins");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
+                name: "tbl_UserRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserTokens");
+                name: "tbl_UserTokens");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "tbl_Roles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "tbl_Users");
         }
     }
 }
