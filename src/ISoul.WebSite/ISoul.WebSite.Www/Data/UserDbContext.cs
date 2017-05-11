@@ -18,9 +18,13 @@ namespace ISoul.WebSite.Www.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
 
+            builder.Entity<IdentityUser<int>>().ToTable("tbl_Users");
+
+            //https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/inheritance
+            //https://docs.microsoft.com/en-us/ef/core/modeling/inheritance
+            //https://docs.microsoft.com/en-us/ef/core/modeling/relational/inheritance
             builder.Entity<MemberUser>();
             builder.Entity<CompanyUser>();
-            builder.Entity<IdentityUser<int>>().ToTable("tbl_Users");
         }
     }
 }
