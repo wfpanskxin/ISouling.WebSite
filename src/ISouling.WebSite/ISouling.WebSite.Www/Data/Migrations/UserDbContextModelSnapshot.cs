@@ -30,8 +30,7 @@ namespace ISouling.WebSite.Www.Data.Migrations
 
                 b.HasKey(e => e.Id);
 
-                b.HasIndex(e => e.NormalizedName)
-                    .HasName("RoleNameIndex");
+                b.HasIndex(e => e.NormalizedName);
 
                 b.ToTable("tbl_Roles");
             });
@@ -45,15 +44,15 @@ namespace ISouling.WebSite.Www.Data.Migrations
 
                 b.Property(e => e.ClaimValue);
 
-               b.Property(e => e.RoleId)
-                   .IsRequired();
+                b.Property(e => e.RoleId)
+                    .IsRequired();
 
-               b.HasKey(e => e.Id);
+                b.HasKey(e => e.Id);
 
-               b.HasIndex(e => e.RoleId);
+                b.HasIndex(e => e.RoleId);
 
-               b.ToTable("tbl_RoleClaims");
-           });
+                b.ToTable("tbl_RoleClaims");
+            });
 
             modelBuilder.Entity<IdentityUserClaim<int>>(b =>
             {
@@ -85,7 +84,7 @@ namespace ISouling.WebSite.Www.Data.Migrations
                b.Property(e => e.UserId)
                    .IsRequired();
 
-               b.HasKey("LoginProvider", "ProviderKey");
+               b.HasKey(e => new { e.LoginProvider, e.ProviderKey });
 
                b.HasIndex(e => e.UserId);
 
@@ -98,7 +97,7 @@ namespace ISouling.WebSite.Www.Data.Migrations
 
                b.Property(e => e.RoleId);
 
-               b.HasKey("UserId", "RoleId");
+               b.HasKey(e => new { e.UserId, e.RoleId });
 
                b.HasIndex(e => e.RoleId);
 
@@ -117,7 +116,7 @@ namespace ISouling.WebSite.Www.Data.Migrations
 
                b.Property(e => e.Value);
 
-               b.HasKey("UserId", "LoginProvider", "Name");
+               b.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
 
                b.ToTable("tbl_UserTokens");
            });
@@ -163,29 +162,27 @@ namespace ISouling.WebSite.Www.Data.Migrations
                 b.Property<string>("Discriminator")
                     .IsRequired();
 
-                b.HasKey("Id");
+                b.HasKey(e => e.Id);
 
-                b.HasIndex(e => e.NormalizedEmail)
-                    .HasName("EmailIndex");
+                b.HasIndex(e => e.NormalizedEmail);
 
                 b.HasIndex(e => e.NormalizedUserName)
-                    .IsUnique()
-                    .HasName("UserNameIndex");
+                    .IsUnique();
 
                 b.ToTable("tbl_Users");
             });
 
             modelBuilder.Entity<IdentityRoleClaim<int>>(b =>
-           {
-               b.HasOne(typeof(IdentityRole<int>))
-                   .WithMany("Claims")
-                   .HasForeignKey("RoleId")
-                   .OnDelete(DeleteBehavior.Cascade);
-           });
+            {
+                b.HasOne<IdentityRole<int>>()
+                    .WithMany("Claims")
+                    .HasForeignKey("RoleId")
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
 
             modelBuilder.Entity<IdentityUserClaim<int>>(b =>
            {
-               b.HasOne(typeof(IdentityUser<int>))
+               b.HasOne<IdentityUser<int>>()
                    .WithMany("Claims")
                    .HasForeignKey("UserId")
                    .OnDelete(DeleteBehavior.Cascade);
@@ -193,7 +190,7 @@ namespace ISouling.WebSite.Www.Data.Migrations
 
             modelBuilder.Entity<IdentityUserLogin<int>>(b =>
             {
-                b.HasOne(typeof(IdentityUser<int>))
+                b.HasOne<IdentityUser<int>>()
                     .WithMany("Logins")
                    .HasForeignKey("UserId")
                    .OnDelete(DeleteBehavior.Cascade);
@@ -201,12 +198,12 @@ namespace ISouling.WebSite.Www.Data.Migrations
 
             modelBuilder.Entity<IdentityUserRole<int>>(b =>
             {
-                b.HasOne(typeof(IdentityRole<int>))
+                b.HasOne<IdentityRole<int>>()
                     .WithMany("Users")
                    .HasForeignKey("RoleId")
                    .OnDelete(DeleteBehavior.Cascade);
 
-                b.HasOne(typeof(IdentityUser<int>))
+                b.HasOne<IdentityUser<int>>()
                     .WithMany("Roles")
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade);
