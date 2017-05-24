@@ -161,9 +161,6 @@ namespace ISouling.WebSite.Www.Data.Migrations
                 b.Property(e => e.UserName)
                     .HasMaxLength(256);
 
-                b.Property<string>("Discriminator")
-                    .IsRequired();
-
                 b.HasKey(e => e.Id);
 
                 b.HasIndex(e => e.NormalizedEmail);

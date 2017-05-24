@@ -23,8 +23,8 @@ namespace ISouling.WebSite.Www.Data
             //https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/inheritance
             //https://docs.microsoft.com/en-us/ef/core/modeling/inheritance
             //https://docs.microsoft.com/en-us/ef/core/modeling/relational/inheritance
-            builder.Entity<MemberUser>();
-            builder.Entity<CompanyUser>();
+            builder.Entity<MemberUser>().ToTable("tbl_Users");
+            builder.Entity<CompanyUser>().ToTable("tbl_Users");
         }
     }
 }
