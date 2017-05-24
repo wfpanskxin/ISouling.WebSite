@@ -1,13 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using System;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ISouling.WebSite.Www.Data.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    internal class UserDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -17,106 +16,106 @@ namespace ISouling.WebSite.Www.Data.Migrations
 
             modelBuilder.Entity<IdentityRole<int>>(b =>
             {
-                b.Property<int>("Id")
+                b.Property(e => e.Id)
                     .UseSqlServerIdentityColumn();
 
-                b.Property<string>("ConcurrencyStamp")
+                b.Property(e => e.ConcurrencyStamp)
                     .IsConcurrencyToken();
 
-                b.Property<string>("Name")
-                    .HasAnnotation("MaxLength", 256);
+                b.Property(e => e.Name)
+                    .HasMaxLength(256);
 
-                b.Property<string>("NormalizedName")
-                    .HasAnnotation("MaxLength", 256);
+                b.Property(e => e.NormalizedName)
+                    .HasMaxLength(256);
 
-                b.HasKey("Id");
+                b.HasKey(e => e.Id);
 
-                b.HasIndex("NormalizedName")
+                b.HasIndex(e => e.NormalizedName)
                     .HasName("RoleNameIndex");
 
                 b.ToTable("tbl_Roles");
             });
 
             modelBuilder.Entity<IdentityRoleClaim<int>>(b =>
-           {
-               b.Property<int>("Id")
+            {
+                b.Property(e => e.Id)
                     .UseSqlServerIdentityColumn();
 
-               b.Property<string>("ClaimType");
+                b.Property(e => e.ClaimType);
 
-               b.Property<string>("ClaimValue");
+                b.Property(e => e.ClaimValue);
 
-               b.Property<int>("RoleId")
+               b.Property(e => e.RoleId)
                    .IsRequired();
 
-               b.HasKey("Id");
+               b.HasKey(e => e.Id);
 
-               b.HasIndex("RoleId");
+               b.HasIndex(e => e.RoleId);
 
                b.ToTable("tbl_RoleClaims");
            });
 
             modelBuilder.Entity<IdentityUserClaim<int>>(b =>
             {
-                b.Property<int>("Id")
+                b.Property(e => e.Id)
                     .UseSqlServerIdentityColumn();
 
-                b.Property<string>("ClaimType");
+                b.Property(e => e.ClaimType);
 
-                b.Property<string>("ClaimValue");
+                b.Property(e => e.ClaimValue);
 
-                b.Property<int>("UserId")
+                b.Property(e => e.UserId)
                     .IsRequired();
 
-                b.HasKey("Id");
+                b.HasKey(e => e.Id);
 
-                b.HasIndex("UserId");
+                b.HasIndex(e => e.UserId);
 
                 b.ToTable("tbl_UserClaims");
             });
 
             modelBuilder.Entity<IdentityUserLogin<int>>(b =>
            {
-               b.Property<string>("LoginProvider");
+               b.Property(e => e.LoginProvider);
 
-               b.Property<string>("ProviderKey");
+               b.Property(e => e.ProviderKey);
 
-               b.Property<string>("ProviderDisplayName");
+               b.Property(e => e.ProviderDisplayName);
 
-               b.Property<int>("UserId")
+               b.Property(e => e.UserId)
                    .IsRequired();
 
                b.HasKey("LoginProvider", "ProviderKey");
 
-               b.HasIndex("UserId");
+               b.HasIndex(e => e.UserId);
 
                b.ToTable("tbl_UserLogins");
            });
 
             modelBuilder.Entity<IdentityUserRole<int>>(b =>
            {
-               b.Property<int>("UserId");
+               b.Property(e => e.UserId);
 
-               b.Property<int>("RoleId");
+               b.Property(e => e.RoleId);
 
                b.HasKey("UserId", "RoleId");
 
-               b.HasIndex("RoleId");
+               b.HasIndex(e => e.RoleId);
 
-               b.HasIndex("UserId");
+               b.HasIndex(e => e.UserId);
 
                b.ToTable("tbl_UserRoles");
            });
 
             modelBuilder.Entity<IdentityUserToken<int>>(b =>
            {
-               b.Property<int>("UserId");
+               b.Property(e => e.UserId);
 
-               b.Property<string>("LoginProvider");
+               b.Property(e => e.LoginProvider);
 
-               b.Property<string>("Name");
+               b.Property(e => e.Name);
 
-               b.Property<string>("Value");
+               b.Property(e => e.Value);
 
                b.HasKey("UserId", "LoginProvider", "Name");
 
@@ -125,51 +124,51 @@ namespace ISouling.WebSite.Www.Data.Migrations
 
             modelBuilder.Entity<IdentityUser<int>>(b =>
             {
-                b.Property<int>("Id")
+                b.Property(e => e.Id)
                     .UseSqlServerIdentityColumn();
 
-                b.Property<int>("AccessFailedCount");
+                b.Property(e => e.AccessFailedCount);
 
-                b.Property<string>("ConcurrencyStamp")
+                b.Property(e => e.ConcurrencyStamp)
                     .IsConcurrencyToken();
 
-                b.Property<string>("Email")
-                    .HasAnnotation("MaxLength", 256);
+                b.Property(e => e.Email)
+                    .HasMaxLength(256);
 
-                b.Property<bool>("EmailConfirmed");
+                b.Property(e => e.EmailConfirmed);
 
-                b.Property<bool>("LockoutEnabled");
+                b.Property(e => e.LockoutEnabled);
 
-                b.Property<DateTimeOffset?>("LockoutEnd");
+                b.Property(e => e.LockoutEnd);
 
-                b.Property<string>("NormalizedEmail")
-                    .HasAnnotation("MaxLength", 256);
+                b.Property(e => e.NormalizedEmail)
+                    .HasMaxLength(256);
 
-                b.Property<string>("NormalizedUserName")
-                    .HasAnnotation("MaxLength", 256);
+                b.Property(e => e.NormalizedUserName)
+                    .HasMaxLength(256);
 
-                b.Property<string>("PasswordHash");
+                b.Property(e => e.PasswordHash);
 
-                b.Property<string>("PhoneNumber");
+                b.Property(e => e.PhoneNumber);
 
-                b.Property<bool>("PhoneNumberConfirmed");
+                b.Property(e => e.PhoneNumberConfirmed);
 
-                b.Property<string>("SecurityStamp");
+                b.Property(e => e.SecurityStamp);
 
-                b.Property<bool>("TwoFactorEnabled");
+                b.Property(e => e.TwoFactorEnabled);
 
-                b.Property<string>("UserName")
-                    .HasAnnotation("MaxLength", 256);
+                b.Property(e => e.UserName)
+                    .HasMaxLength(256);
 
                 b.Property<string>("Discriminator")
                     .IsRequired();
 
                 b.HasKey("Id");
 
-                b.HasIndex("NormalizedEmail")
+                b.HasIndex(e => e.NormalizedEmail)
                     .HasName("EmailIndex");
 
-                b.HasIndex("NormalizedUserName")
+                b.HasIndex(e => e.NormalizedUserName)
                     .IsUnique()
                     .HasName("UserNameIndex");
 
