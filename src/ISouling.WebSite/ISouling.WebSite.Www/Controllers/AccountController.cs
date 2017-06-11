@@ -1,4 +1,5 @@
-﻿using ISouling.WebSite.Www.Models.AccountViewModels;
+﻿using System;
+using ISouling.WebSite.Www.Models.AccountViewModels;
 using ISouling.WebSite.Www.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using ISouling.Component.User;
+using Microsoft.Extensions.Localization;
 
 namespace ISouling.WebSite.Www.Controllers
 {
@@ -23,6 +25,7 @@ namespace ISouling.WebSite.Www.Controllers
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
         private readonly string _externalCookieScheme;
+        private readonly IStringLocalizer _localizer;
 
         public AccountController(
             UserManager<IdentityUser<int>> userManager,
@@ -30,7 +33,8 @@ namespace ISouling.WebSite.Www.Controllers
             IOptions<IdentityCookieOptions> identityCookieOptions,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            IStringLocalizer<HomeController> localizer)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -38,6 +42,7 @@ namespace ISouling.WebSite.Www.Controllers
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _localizer = localizer;
         }
 
         //
@@ -101,17 +106,20 @@ namespace ISouling.WebSite.Www.Controllers
             return View();
         }
 
+        #region Register
         //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Register(RegisterType? registerType, string returnUrl = null)
         {
+            var model = await GetRegisterViewModel(registerType);
+
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new MemberUser { UserName = model.Email, Email = model.Email };
+                var user = GetUser(model);
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -125,12 +133,49 @@ namespace ISouling.WebSite.Www.Controllers
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);
                 }
+
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        private async Task<RegisterViewModel> GetRegisterViewModel(RegisterType? registerType)
+        {
+            RegisterViewModel model;
+
+            switch (registerType)
+            {
+                case RegisterType.MemberEmail:
+                    model = new MemberEmailRegisterViewModel();
+                    break;
+                case RegisterType.MemberCellphone:
+                    model = new MemberPhoneRegisterViewModel();
+                    break;
+                default:
+                    model = new MemberEmailRegisterViewModel();
+                    break;
+            }
+
+            await TryUpdateModelAsync(model);
+
+            return model;
+        }
+
+        private IdentityUser<int> GetUser(RegisterViewModel model)
+        {
+            switch (model)
+            {
+                case MemberEmailRegisterViewModel me:
+                    return new MemberUser { UserName = me.Nickname, NormalizedEmail = me.Nickname, Email = me.Email };
+                case MemberPhoneRegisterViewModel mc:
+                    return new MemberUser { UserName = mc.Nickname, NormalizedEmail = mc.Nickname, PhoneNumber = mc.PhoneNumber };
+                default:
+                    throw new NotSupportedException(_localizer["Register not support type {0}", model.GetType().FullName]);
+            }
+        }
+        #endregion
 
         //
         // POST: /Account/Logout

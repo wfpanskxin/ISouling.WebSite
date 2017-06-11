@@ -1,0 +1,47 @@
+﻿@model MemberEmailRegisterViewModel
+@inject IViewLocalizer Localizer
+<div class="form-group">
+    <label asp-for="Email" class="col-md-2 control-label"></label>
+    <div class="col-md-10">
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group">
+    <label asp-for="Password" class="col-md-2 control-label"></label>
+    <div class="col-md-10">
+        <input asp-for="Password" class="form-control" />
+        @*<input name="Password" id="Password" class="form-control" value="@Model?.Password" />*@
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group">
+    <label asp-for="ConfirmPassword" class="col-md-2 control-label"></label>
+    <div class="col-md-10">
+        <input asp-for="ConfirmPassword" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group">
+    <label asp-for="Nickname" class="col-md-2 control-label"></label>
+    <div class="col-md-10">
+        @*<input asp-for="NickName" class="form-control" />*@
+        <input name="Nickname" id="Nickname" class="form-control" value="@Model?.Nickname" />
+        <span asp-validation-for="Nickname" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group">
+    <label asp-for="EmailCode" class="col-md-2 control-label"></label>
+    <div class="col-md-10">
+        <input asp-for="EmailCode" class="form-control" size="6" />
+        <button onclick="">@Localizer["获取验证码"]</button>
+        <span asp-validation-for="EmailCode" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group">
+    <label asp-for="InvitationCode" class="col-md-2 control-label"></label>
+    <div class="col-md-10">
+        <input asp-for="InvitationCode" class="form-control" />
+        <span asp-validation-for="InvitationCode" class="text-danger"></span>
+    </div>
+</div>

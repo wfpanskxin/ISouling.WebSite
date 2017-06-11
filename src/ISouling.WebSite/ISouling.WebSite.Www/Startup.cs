@@ -11,6 +11,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Globalization;
+using ISouling.WebSite.Www.Models.AccountViewModels;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Options;
 
 namespace ISouling.WebSite.Www
 {
@@ -48,7 +54,22 @@ namespace ISouling.WebSite.Www
                 .AddEntityFrameworkStores<UserDbContext, int>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
+            services.AddSession();
+
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.AddMvc()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization(options =>
+                {
+                    options.DataAnnotationLocalizerProvider = (type, factory) =>
+
+                    {
+                        if (type.IsSubclassOf(typeof(RegisterViewModel)))
+                            return factory.Create(typeof(RegisterViewModel));
+                        return factory.Create(type);
+                    };
+                });
 
             #region autofac
             // Create the container builder.
@@ -73,6 +94,21 @@ namespace ISouling.WebSite.Www
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            var supportedCultures = new[]
+            {
+                new CultureInfo("zh-CN"),
+                new CultureInfo("en-US")
+            };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(supportedCultures[0]),
+                // Formatting numbers, dates, etc.
+                SupportedCultures = supportedCultures,
+                // UI strings that we have localized.
+                SupportedUICultures = supportedCultures
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -87,6 +123,8 @@ namespace ISouling.WebSite.Www
             app.UseStaticFiles();
 
             app.UseIdentity();
+
+            app.UseSession();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
 

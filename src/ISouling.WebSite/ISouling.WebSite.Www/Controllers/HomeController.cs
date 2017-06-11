@@ -27,5 +27,7 @@ namespace ISouling.WebSite.Www.Controllers
         {
             return View();
         }
+
+        public IActionResult Captcha() => new CaptchaResult();
     }
 }
