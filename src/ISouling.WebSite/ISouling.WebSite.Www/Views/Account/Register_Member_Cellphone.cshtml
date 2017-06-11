@@ -1,27 +1,6 @@
 ﻿@model MemberPhoneRegisterViewModel
-@inject IViewLocalizer Localizer
-<div class="form-group">
-    <label asp-for="PhoneNumber" class="col-md-2 control-label"></label>
-    <div class="col-md-10">
-        <input asp-for="PhoneNumber" class="form-control" />
-        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-    </div>
-</div>
-<div class="form-group">
-    <label asp-for="Password" class="col-md-2 control-label"></label>
-    <div class="col-md-10">
-        @*<input asp-for="Password" class="form-control" />*@
-        <input name="Password" id="Password" class="form-control" value="@Model?.Password" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-</div>
-<div class="form-group">
-    <label asp-for="ConfirmPassword" class="col-md-2 control-label"></label>
-    <div class="col-md-10">
-        <input asp-for="ConfirmPassword" class="form-control" />
-        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-    </div>
-</div>
+@Html.Partial("Register_Cellphone")
+@Html.Partial("Register_Password")
 <div class="form-group">
     <label asp-for="Nickname" class="col-md-2 control-label"></label>
     <div class="col-md-10">
@@ -29,14 +8,7 @@
         <span asp-validation-for="Nickname" class="text-danger"></span>
     </div>
 </div>
-<div class="form-group">
-    <label asp-for="PhoneCode" class="col-md-2 control-label"></label>
-    <div class="col-md-10">
-        <input asp-for="PhoneCode" class="form-control" size="6" />
-        <button onclick="">@Localizer["获取验证码"]</button>
-        <span asp-validation-for="PhoneCode" class="text-danger"></span>
-    </div>
-</div>
+@Html.Partial("Register_VerificationCode")
 <div class="form-group">
     <label asp-for="InvitationCode" class="col-md-2 control-label"></label>
     <div class="col-md-10">

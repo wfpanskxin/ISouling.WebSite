@@ -96,6 +96,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RegisterViewModel.zh- cn.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Account\Register_VerificationCode.en-US.resx">
+      <LastGenOutput>Register.zh- cn.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views\Account\Register.en-US.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Register.zh- cn.Designer.cs</LastGenOutput>

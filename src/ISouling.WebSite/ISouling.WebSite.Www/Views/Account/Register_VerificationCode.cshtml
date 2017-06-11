@@ -1,0 +1,10 @@
+﻿@model RegisterViewModel
+@inject IViewLocalizer Localizer
+<div class="form-group">
+    <label asp-for="VerificationCode" class="col-md-2 control-label"></label>
+    <div class="col-md-10">
+        <input asp-for="VerificationCode" class="form-control" size="6" />
+        <button onclick="">@Localizer["获取验证码"]</button>
+        <span asp-validation-for="VerificationCode" class="text-danger"></span>
+    </div>
+</div>

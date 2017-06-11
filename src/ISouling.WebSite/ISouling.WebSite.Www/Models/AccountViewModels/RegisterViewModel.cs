@@ -10,27 +10,23 @@ namespace ISouling.WebSite.Www.Models.AccountViewModels
 
     #region RegisterViewModel
 
-    public interface ICaptcha
-    {
-        string Captcha { get; set; }
-    }
-
-    public abstract class RegisterViewModel : ICaptcha
+    public abstract class RegisterViewModel
     {
         [Required]
-        [StringLength(20, ErrorMessage = "{0]最少{2}最多{1}个字符", MinimumLength = 6)]
+        [StringLength(20, ErrorMessage = "{0}最少{2}最多{1}个字符。", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "密码")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "确认密码")]
-        [Compare("Password", ErrorMessage = "密码和确认密码不匹配。")]
+        [Compare("Password", ErrorMessage = "{1}和{0}不匹配。")]
         public string ConfirmPassword { get; set; }
 
         [Required]
+        [StringLength(6, ErrorMessage = "{0}最多{1}个字符。")]
         [Display(Name = "验证码")]
-        public string Captcha { get; set; }
+        public string VerificationCode { get; set; }
     }
 
     public abstract class EmailRegisterViewModel : RegisterViewModel
@@ -39,30 +35,22 @@ namespace ISouling.WebSite.Www.Models.AccountViewModels
         [EmailAddress]
         [Display(Name = "邮箱")]
         public string Email { get; set; }
-
-        [Required]
-        [Display(Name = "邮箱验证码")]
-        public string EmailCode { get; set; }
     }
 
     public abstract class PhoneRegisterViewModel : RegisterViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "手机号")]
         public string PhoneNumber { get; set; }
-
-        [Required]
-        [Display(Name = "短信验证码")]
-        public string PhoneCode { get; set; }
     }
     #endregion
 
     #region MemberRegisterViewModel
+
     public class MemberEmailRegisterViewModel : EmailRegisterViewModel
     {
         [Required]
-        [StringLength(20, ErrorMessage = "{0]最少{2}最多{1}个字符", MinimumLength = 6)]
+        [StringLength(20, ErrorMessage = "{0}最少{2}最多{1}个字符。", MinimumLength = 4)]
         [Display(Name = "昵称")]
         public string Nickname { get; set; }
 
@@ -73,7 +61,7 @@ namespace ISouling.WebSite.Www.Models.AccountViewModels
     public class MemberPhoneRegisterViewModel : PhoneRegisterViewModel
     {
         [Required]
-        [StringLength(20, ErrorMessage = "{0]最少{2}最多{1}个字符", MinimumLength = 6)]
+        [StringLength(20, ErrorMessage = "{0}最少{2}最多{1}个字符。", MinimumLength = 4)]
         [Display(Name = "昵称")]
         public string Nickname { get; set; }
 

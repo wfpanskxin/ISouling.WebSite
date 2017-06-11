@@ -117,34 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="确认密码" xml:space="preserve">
-    <value>Confirm password</value>
-  </data>
-  <data name="邮箱" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="邀请码" xml:space="preserve">
-    <value>Invitation code</value>
-  </data>
-  <data name="昵称" xml:space="preserve">
-    <value>Nickname</value>
-  </data>
-  <data name="密码" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="{1}和{0}不匹配。" xml:space="preserve">
-    <value>The {1} and {0} do not match.</value>
-  </data>
-  <data name="{0}最少{2}最多{1}个字符。" xml:space="preserve">
-    <value>The {0} must be at least {2} and at max {1} characters long.</value>
-  </data>
-  <data name="手机号" xml:space="preserve">
-    <value>Phone number</value>
-  </data>
-  <data name="验证码" xml:space="preserve">
-    <value>Verification code</value>
-  </data>
-  <data name="{0}最多{1}个字符。" xml:space="preserve">
-    <value>The {0} must be at max {1} characters long.</value>
+  <data name="获取验证码" xml:space="preserve">
+    <value>Send verification code</value>
   </data>
 </root>
