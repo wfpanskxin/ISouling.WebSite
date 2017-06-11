@@ -158,7 +158,7 @@ namespace ISouling.WebSite.Www.Controllers
                     break;
             }
 
-            await TryUpdateModelAsync(model);
+            await TryUpdateModelAsync(model, model.GetType(), string.Empty);
 
             return model;
         }
@@ -168,9 +168,9 @@ namespace ISouling.WebSite.Www.Controllers
             switch (model)
             {
                 case MemberEmailRegisterViewModel me:
-                    return new MemberUser { UserName = me.Nickname, NormalizedEmail = me.Nickname, Email = me.Email };
+                    return new MemberUser { UserName = me.Email, NormalizedEmail = me.Nickname, Email = me.Email };
                 case MemberPhoneRegisterViewModel mc:
-                    return new MemberUser { UserName = mc.Nickname, NormalizedEmail = mc.Nickname, PhoneNumber = mc.PhoneNumber };
+                    return new MemberUser { UserName = mc.PhoneNumber, NormalizedEmail = mc.Nickname, PhoneNumber = mc.PhoneNumber };
                 default:
                     throw new NotSupportedException(_localizer["Register not support type {0}", model.GetType().FullName]);
             }
