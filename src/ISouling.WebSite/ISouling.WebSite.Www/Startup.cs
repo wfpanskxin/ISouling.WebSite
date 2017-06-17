@@ -72,6 +72,7 @@ namespace ISouling.WebSite.Www
                 });
 
             #region autofac
+
             // Create the container builder.
             var builder = new ContainerBuilder();
 
@@ -85,7 +86,8 @@ namespace ISouling.WebSite.Www
 
             // Create the IServiceProvider based on the container.
             return new AutofacServiceProvider(ApplicationContainer = builder.Build());
-            #endregion
+
+            #endregion autofac
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -112,7 +114,7 @@ namespace ISouling.WebSite.Www
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseDatabaseErrorPage();
+                app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
             }
             else

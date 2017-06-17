@@ -100,23 +100,23 @@ namespace ISouling.WebSite.Www.Controllers
         // GET: /Account/Register
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Register(string returnUrl = null)
+        public IActionResult Register(RegisterType? registerType)
         {
-            ViewData["ReturnUrl"] = returnUrl;
+            ViewData["RegisterType"] = registerType;
             return View();
         }
 
         #region Register
+
         //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterType? registerType, string returnUrl = null)
+        public async Task<IActionResult> Register(RegisterType? registerType, string returnUrl)
         {
             var model = await GetRegisterViewModel(registerType);
 
-            ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
                 var user = GetUser(model);
@@ -137,6 +137,8 @@ namespace ISouling.WebSite.Www.Controllers
                 AddErrors(result);
             }
 
+            model.VerificationCode = null;
+
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -150,9 +152,11 @@ namespace ISouling.WebSite.Www.Controllers
                 case RegisterType.MemberEmail:
                     model = new MemberEmailRegisterViewModel();
                     break;
+
                 case RegisterType.MemberCellphone:
                     model = new MemberPhoneRegisterViewModel();
                     break;
+
                 default:
                     model = new MemberEmailRegisterViewModel();
                     break;
@@ -169,13 +173,16 @@ namespace ISouling.WebSite.Www.Controllers
             {
                 case MemberEmailRegisterViewModel me:
                     return new MemberUser { UserName = me.Email, NormalizedEmail = me.Nickname, Email = me.Email };
+
                 case MemberPhoneRegisterViewModel mc:
                     return new MemberUser { UserName = mc.PhoneNumber, NormalizedEmail = mc.Nickname, PhoneNumber = mc.PhoneNumber };
+
                 default:
                     throw new NotSupportedException(_localizer["Register not support type {0}", model.GetType().FullName]);
             }
         }
-        #endregion
+
+        #endregion Register
 
         //
         // POST: /Account/Logout
@@ -517,6 +524,6 @@ namespace ISouling.WebSite.Www.Controllers
             }
         }
 
-        #endregion
+        #endregion Helpers
     }
 }
