@@ -9,10 +9,8 @@ namespace ISouling.WebSite.Www.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult AboutUs()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 

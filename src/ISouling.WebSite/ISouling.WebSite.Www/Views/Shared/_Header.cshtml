@@ -1,0 +1,30 @@
+﻿<header class="g-header">
+    <!-- m-top 顶部栏-->
+    <div class="bgtop" id="toper">
+        <div class="m-toper clearfix">
+            <span class="hotline mr-20 f-12">您好，欢迎来到iSouLing！</span>
+            <ul class="nav clearfix 9alink">
+                <li><a href="javascript::">我的iSouLing</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- m-nav 导航栏-->
+    <div class="bgfff" id="naver">
+        <div class="m-nav h70">
+            <div class="logo">
+                <a href="javascript:;"><img src="/images/main/logo.png" title="iSouLing" class="logo"></a>
+            </div>
+            <ul class="nav">
+                <li class="nLi@(ViewBag.Navi == 0 || ViewBag.Navi == null ? " on" : "")"><a asp-controller="Home" asp-action="Index" class="link">首页</a></li>
+                <li class="nLi@(ViewBag.Navi == 1 ? " on" : "")"><a asp-controller="Enneagram" asp-action="Index" class="link">人格百科</a></li>
+                <li class="nLi@(ViewBag.Navi == 2 ? " on" : "")"><a asp-controller="Home" asp-action="AboutUs" class="link">关于我们</a></li>
+            </ul>
+            <ul class="nav2">
+                <li class="nLi wauto">
+                    <a href="javascript:;" class="btn-theme btn-orange2 mr-5">登录</a>
+                    <a href="javascript:;" class="btn-theme">注册领礼包</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>

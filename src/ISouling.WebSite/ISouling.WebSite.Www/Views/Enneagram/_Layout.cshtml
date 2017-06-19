@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "../Shared/_Layout";
+    ViewBag.Navi = 1;
+}
+@section head{
+    <link rel="stylesheet" type="text/css" href="/css/about.css">
+}
+<div class="m-mainer bgabout pb-20">
+    <div class="ma-product wp clearfix pt-20 pin-wrapper">
+        <div class="ma-product-left">
+            <div class="pin-wrapper">
+                <div class="ma-product-menu pinned2">
+                    <ul>
+                        <li class="@(ViewBag.Enneagram == null ? "on" : null)"><a asp-action="Index"><i class="bk"></i>九型人格介绍</a></li>
+                        <li class="@(ViewBag.Enneagram == 0 ? "on" : null)"><a asp-action="Career"><i class="bk"></i>心灵导向的职业生涯</a></li>
+                        <li class="@(ViewBag.Enneagram == 1 ? "on" : null)"><a asp-action="Index" asp-route-id="1"><i class="bk bk1"></i>1号 完美型/改革型</a></li>
+                        <li class="@(ViewBag.Enneagram == 2 ? "on" : null)"><a asp-action="Index" asp-route-id="2"><i class="bk bk2"></i>2号 助人型/付出型</a></li>
+                        <li class="@(ViewBag.Enneagram == 3 ? "on" : null)"><a asp-action="Index" asp-route-id="3"><i class="bk bk3"></i>3号 成就型/动力型</a></li>
+                        <li class="@(ViewBag.Enneagram == 4 ? "on" : null)"><a asp-action="Index" asp-route-id="4"><i class="bk bk4"></i>4号 独特型/感性型</a></li>
+                        <li class="@(ViewBag.Enneagram == 5 ? "on" : null)"><a asp-action="Index" asp-route-id="5"><i class="bk bk5"></i>5号 探索型/思想型</a></li>
+                        <li class="@(ViewBag.Enneagram == 6 ? "on" : null)"><a asp-action="Index" asp-route-id="6"><i class="bk bk6"></i>6号 疑惑型/忠诚型</a></li>
+                        <li class="@(ViewBag.Enneagram == 7 ? "on" : null)"><a asp-action="Index" asp-route-id="7"><i class="bk bk7"></i>7号 活跃型/开朗型</a></li>
+                        <li class="@(ViewBag.Enneagram == 8 ? "on" : null)"><a asp-action="Index" asp-route-id="8"><i class="bk bk8"></i>8号 领袖型/领导型</a></li>
+                        <li class="@(ViewBag.Enneagram == 9 ? "on" : null)"><a asp-action="Index" asp-route-id="9"><i class="bk bk9"></i>9号 和谐型/和谐型</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ma-product-right">
+            @RenderBody()
+        </div>
+    </div>
+</div>

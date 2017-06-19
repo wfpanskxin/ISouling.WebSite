@@ -7,8 +7,16 @@
     <UserSecretsId>aspnet-ISouling.WebSite.Www-1afde6c6-b679-42f1-9426-7065d2718279</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="wwwroot\css\about.css" />
     <Content Include="wwwroot\css\common.css" />
     <Content Include="wwwroot\css\global.css" />
+    <Content Include="wwwroot\css\iconfont\iconfont.css" />
+    <Content Include="wwwroot\css\iconfont\iconfont.eot" />
+    <Content Include="wwwroot\css\iconfont\iconfont.svg" />
+    <Content Include="wwwroot\css\iconfont\iconfont.ttf" />
+    <Content Include="wwwroot\css\iconfont\iconfont.woff" />
+    <Content Include="wwwroot\css\index.css" />
+    <Content Include="wwwroot\css\layer.css" />
     <Content Include="wwwroot\css\site.css" />
     <Content Include="wwwroot\css\site.min.css" />
     <Content Include="wwwroot\images\avatar.png" />
@@ -20,11 +28,66 @@
     <Content Include="wwwroot\images\favicon.ico" />
     <Content Include="wwwroot\images\ico-circle1.png" />
     <Content Include="wwwroot\images\ico-circle2.png" />
+    <Content Include="wwwroot\images\ico-circle3.png" />
     <Content Include="wwwroot\images\icon_error_s.png" />
     <Content Include="wwwroot\images\icon_info_s.png" />
     <Content Include="wwwroot\images\icon_right_s.png" />
     <Content Include="wwwroot\images\icon_warning_s.png" />
+    <Content Include="wwwroot\images\layer\close.png" />
+    <Content Include="wwwroot\images\layer\close2.png" />
+    <Content Include="wwwroot\images\layer\icon.png" />
+    <Content Include="wwwroot\images\layer\loading-0.gif" />
+    <Content Include="wwwroot\images\layer\loading-1.gif" />
+    <Content Include="wwwroot\images\layer\loading-2.gif" />
     <Content Include="wwwroot\images\logo.png" />
+    <Content Include="wwwroot\images\main\about\aboutus_1.jpg" />
+    <Content Include="wwwroot\images\main\about\aboutus_2.jpg" />
+    <Content Include="wwwroot\images\main\about\aboutus_3.jpg" />
+    <Content Include="wwwroot\images\main\about\avatar.jpg" />
+    <Content Include="wwwroot\images\main\about\backdrop.png" />
+    <Content Include="wwwroot\images\main\about\baike_intro.jpg" />
+    <Content Include="wwwroot\images\main\about\baike_table.jpg" />
+    <Content Include="wwwroot\images\main\about\icon_bk.png" />
+    <Content Include="wwwroot\images\main\about\icon_zytz.png" />
+    <Content Include="wwwroot\images\main\about\markleft.png" />
+    <Content Include="wwwroot\images\main\about\markright.png" />
+    <Content Include="wwwroot\images\main\banner1.jpg" />
+    <Content Include="wwwroot\images\main\banner2.jpg" />
+    <Content Include="wwwroot\images\main\banner3.jpg" />
+    <Content Include="wwwroot\images\main\banner4.jpg" />
+    <Content Include="wwwroot\images\main\banner5.jpg" />
+    <Content Include="wwwroot\images\main\banner_index.png" />
+    <Content Include="wwwroot\images\main\bgbanner.png" />
+    <Content Include="wwwroot\images\main\btn-theme2.png" />
+    <Content Include="wwwroot\images\main\btngo.png" />
+    <Content Include="wwwroot\images\main\captcha.png" />
+    <Content Include="wwwroot\images\main\form_step3.png" />
+    <Content Include="wwwroot\images\main\icheck-blue.png" />
+    <Content Include="wwwroot\images\main\icheck-blue2.png" />
+    <Content Include="wwwroot\images\main\icheck-blue5.png" />
+    <Content Include="wwwroot\images\main\icheck-orange.png" />
+    <Content Include="wwwroot\images\main\icheck-orange2.png" />
+    <Content Include="wwwroot\images\main\icheck-orange5.png" />
+    <Content Include="wwwroot\images\main\icheck-red1.png" />
+    <Content Include="wwwroot\images\main\icon_error_s.png" />
+    <Content Include="wwwroot\images\main\icon_info_s.png" />
+    <Content Include="wwwroot\images\main\icon_right_s.png" />
+    <Content Include="wwwroot\images\main\icon_warning_s.png" />
+    <Content Include="wwwroot\images\main\identity_step.png" />
+    <Content Include="wwwroot\images\main\index_banner1.png" />
+    <Content Include="wwwroot\images\main\index_banner2.png" />
+    <Content Include="wwwroot\images\main\index_banner3.png" />
+    <Content Include="wwwroot\images\main\index_banner4.png" />
+    <Content Include="wwwroot\images\main\index_banner5.png" />
+    <Content Include="wwwroot\images\main\index_banner6.png" />
+    <Content Include="wwwroot\images\main\index_banner7.png" />
+    <Content Include="wwwroot\images\main\index_banner_text_title.png" />
+    <Content Include="wwwroot\images\main\input_titlebg.png" />
+    <Content Include="wwwroot\images\main\logo.png" />
+    <Content Include="wwwroot\images\main\reg_i_login.jpg" />
+    <Content Include="wwwroot\images\main\safe0.png" />
+    <Content Include="wwwroot\images\main\slider-arrow.png" />
+    <Content Include="wwwroot\images\main\success2.png" />
     <Content Include="wwwroot\images\pic_1.jpg" />
     <Content Include="wwwroot\images\plus.png" />
     <Content Include="wwwroot\images\qr_code.png" />
@@ -37,7 +100,9 @@
     <Content Include="wwwroot\js\area.js" />
     <Content Include="wwwroot\js\common.js" />
     <Content Include="wwwroot\js\lib\html5.js" />
+    <Content Include="wwwroot\js\lib\icheck.min.js" />
     <Content Include="wwwroot\js\lib\jquery.min.js" />
+    <Content Include="wwwroot\js\lib\jquery.SuperSlide.2.1.1.js" />
     <Content Include="wwwroot\js\lib\layer\layer.js" />
     <Content Include="wwwroot\js\lib\layer\skin\default\close.png" />
     <Content Include="wwwroot\js\lib\layer\skin\default\close2.png" />
@@ -46,6 +111,10 @@
     <Content Include="wwwroot\js\lib\layer\skin\default\loading-1.gif" />
     <Content Include="wwwroot\js\lib\layer\skin\default\loading-2.gif" />
     <Content Include="wwwroot\js\lib\layer\skin\layer.css" />
+    <Content Include="wwwroot\js\register.js" />
+    <Content Include="wwwroot\js\security\Barrett.js" />
+    <Content Include="wwwroot\js\security\BigInt.js" />
+    <Content Include="wwwroot\js\security\RSA.js" />
     <Content Include="wwwroot\js\site.js" />
     <Content Include="wwwroot\js\site.min.js" />
     <Content Include="wwwroot\js\verifycode.js" />
@@ -81,9 +150,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\ISouling.Component\ISouling.Component.User\ISouling.Component.User.csproj" />
     <ProjectReference Include="..\..\ISouling\ISouling.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Member\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources\ViewModels\AccountViewModels\RegisterViewModel.zh-CN.Designer.cs">

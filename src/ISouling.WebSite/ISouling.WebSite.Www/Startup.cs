@@ -132,6 +132,32 @@ namespace ISouling.WebSite.Www
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(name: "areacontroller",
+                    template: "{area:exists}/{controller=Home}",
+                    defaults: new { action = "Index" });
+
+                routes.MapRoute(name: "areaaction",
+                    template: "{area:exists}/{action=Index}/{id?}",
+                    defaults: new { controller = "Home" });
+
+                routes.MapRoute(name: "areadefault",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "Enneagram",
+                    template: "Enneagram/{id:range(1,9)}",
+                    defaults: new { controller = "Enneagram", action = "Index" });
+
+                routes.MapRoute(
+                    name: "controller",
+                    template: "{controller=Home}",
+                    defaults: new { action = "Index" });
+
+                routes.MapRoute(
+                    name: "action",
+                    template: "{action=Index}/{id?}",
+                    defaults: new { controller = "Home" });
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

@@ -1,108 +1,95 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = Localizer["首页"];
 }
-
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Package Management" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Bring in libraries from NuGet, Bower, and npm, and automate tasks using Grunt or Gulp.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525029&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner4.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
+<div class="m-banner">
+    <div class="bd">
+        <div class="tempWrap" style="overflow:hidden; position:relative; width:5700px">
+            <ul id="bannerList" style="width: 17100px; position: relative; overflow: hidden; padding: 0; margin: 0; left: -7600px;">
+                <li style="background: url(/images/main/banner4.jpg) center center no-repeat; float: left; width: 1900px;" title="" class="clone">
+                    <a target="_blank" href="javascript:;"></a>
+                </li>
+                <li style="background: url(/images/main/banner5.jpg) center center no-repeat; float: left; width: 1900px;" title="">
+                    <a target="_blank" href="javascript:;"></a>
+                </li>
+                <li style="background: url(/images/main/banner1.jpg) center center no-repeat; float: left; width: 1900px;" title="">
+                    <a target="_blank" href="javascript:;"></a>
+                </li>
+                <li style="background: url(/images/main/banner2.jpg) center center no-repeat; float: left; width: 1900px;" title="">
+                    <a target="_blank" href="javascript:;"></a>
+                </li>
+                <li style="background: url(/images/main/banner3.jpg) center center no-repeat; float: left; width: 1900px;" title="">
+                    <a target="_blank" href="javascript:;"></a>
+                </li>
+                <li style="background: url(/images/main/banner4.jpg) center center no-repeat; float: left; width: 1900px;" title="">
+                    <a target="_blank" href="javascript:;"></a>
+                </li>
+                <li style="background: url(/images/main/banner5.jpg) center center no-repeat; float: left; width: 1900px;" title="" class="clone">
+                    <a target="_blank" href="javascript:;"></a>
+                </li>
+                <li style="background: url(/images/main/banner1.jpg) center center no-repeat; float: left; width: 1900px;" title="" class="clone">
+                    <a target="_blank" href="javascript:;"></a>
+                </li>
+                <li style="background: url(/images/main/banner2.jpg) center center no-repeat; float: left; width: 1900px;" title="" class="clone">
+                    <a target="_blank" href="javascript:;"></a>
+                </li>
+            </ul>
         </div>
     </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
-
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518004">Bower</a> for managing client-side libraries</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
+    <ul class="hd">
+        <li class=""></li>
+        <li class=""></li>
+        <li class=""></li>
+        <li class="on"></li>
+        <li class=""></li>
+    </ul>
+    <div class="pnBtn prev">
+        <span class="blackBg"></span>
+        <a class="arrow" href="javascript:void(0)"></a>
     </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699318">Add client packages using Bower.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run & Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
+    <div class="pnBtn next">
+        <span class="blackBg"></span>
+        <a class="arrow" href="javascript:void(0)"></a>
     </div>
 </div>
+<div class="index_banner_top">
+    <div class="index_banner1"></div>
+    <div class="index_banner2"></div>
+    <div class="index_banner_box">
+        <div class="index_banner_text">
+            <h2></h2>
+            <div class="text">
+                <p>iSouLing是一个“应用级心灵成长”领域的内容与互动应用整合平台，以人格学、心理学、哲学、社会学、经济学、生命科学等学术和应用资源为根基，整合身心健康、文化交流、个人发展等综合产业服务链。以用户为中心进行人格识别、数据分析和挖掘，为用户提供“自我认知、个人成长、职业事业发展、商务应用”等人工智能综合应用服务，旨在帮助用户实现自我超越和智慧成长，预防心理迷茫和困扰的发生、蔓延与发展，传播喜悦人生的价值观，为健康心灵护航，为精彩人生导航。</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="index_banner_middle">
+    <div class="index_banner3"></div>
+    <div class="index_banner4"></div>
+    <div class="index_banner5"></div>
+</div>
+<div class="index_banner_bottom">
+    <div class="index_banner6"></div>
+    <div class="index_banner7"></div>
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+        $(function() {
+            initBanner();
+        });
+        //焦点图轮换
+        function initBanner() {
+            $(".m-banner .bd li").first().before($(".m-banner .bd li").last());
+            $(".m-banner").slide({
+                titCell: ".hd li",
+                mainCell: ".bd ul",
+                effect: "leftLoop",
+                autoPlay: true,
+                vis: 3,
+                interTime: 5000,
+                trigger: "mouseover"
+            });
+        }
+    </script>
+}

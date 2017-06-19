@@ -1,15 +1,23 @@
 ﻿<!doctype html>
 <html>
 <head>
-    <title>升级为高级用户 - 用户中心</title>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-    <link rel="shortcut icon" href="images/favicon.ico" />
+    <title>@ViewBag.Title - iSouLing</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link rel="Bookmark" href="/favicon.ico">
+    <link rel="Shortcut Icon" href="/favicon.ico" />
     <!--[if lt IE 9]>
-        <script type="text/javascript" src="/js/lib/html5.js"></script>
+        <script type="text/javascript" src="/js/lib/html5.js?v=e1019d667d6a0ebdbdf65e43d369c148"></script>
     <![endif]-->
-    <link href="/css/global.css" rel="stylesheet" type="text/css" />
-    <link href="/css/common.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="/css/iconfont/iconfont.css" />
     <script type="text/javascript" src="/js/lib/jquery.min.js"></script>
+    @await RenderSectionAsync("head", false)
     <script type="text/javascript">
         var basePath = '';
     </script>
@@ -19,55 +27,10 @@
     <!--[if lte IE 7]>
         <div class="browserupgrade">您的浏览器版本过低, <a href="http://rj.baidu.com/soft/lists/3" class="link" target="_blank">请点此更新高版本浏览器</a> , 以获取最佳的体验<em onclick="$('.browserupgrade').hide();">×</em></div>
     <![endif]-->
-    <div class="my_topbar">
-        <div class="my_wrapper clearfix">
-            <a href="javascript:;" class="my_logo">
-                <img src="/images/logo.png" alt="" width="168" height="32">
-            </a>
-            <div class="search l">
-                <div class="search-box cf">
-                    <form onsubmit="if(this.k.value==false ||this.k.value=='请输入您要搜索的内容，如：粉丝'){alert('请输入您要搜索的内容，如：粉丝');return false;}else{encode();}" method="post" action="search.php">
-                        <input type="text" class="txt" autocomplete="off" id="smart_input" name="k" onblur="if (value ==''){value='请输入您要搜索的内容，如：粉丝'}" value="请输入您要搜索的内容，如：粉丝" onfocus="if (value =='请输入您要搜索的内容，如：粉丝'){value =''}">
-                        <input type="hidden" value="" id="kk" name="kk">
-                        <input type="submit" class="btn" value="" name="sou">
-                    </form>
-                </div>
-            </div>
-            <div class="my_person" id="my_person">
-                <ul class="my_groupitem">
-                    <li class="my_group_li">
-                        <a href="javascript:;" class="my_group_a"><span><i class="my_ico_home"></i></span></a>
-                    </li>
-                    <li class="my_group_li">
-                        <a href="javascript:;" class="my_group_a"><span><i class="my_ico_fans"></i></span></a>
-                    </li>
-                    <li class="my_group_li">
-                        <a href="javascript:;" class="my_group_a"><span><i class="my_ico_msg"><em class="icon_num_red"></em></i></span></a>
-                    </li>
-                    <li class="my_group_li">
-                        <a href="javascript:;" class="my_group_a"><span><i class="my_ico_music"></i></span></a>
-                    </li>
-                </ul>
-                <div class="my_login clearfix">
-                    <a id="header_nick" href="javascript:;" class="my_nickname" title="我的个人主页">昵称昵称</a>
-                    <a href="javascript:;" class="my_avatar">
-                        <img src="/images/avatar.png" width="32" height="32" alt="头像">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="page_bg pt-20 pb-50">
-        <div class="page_wrapper">
-            <div class="main_box clearfix">
-                @RenderBody()
-            </div>
-        </div>
-    </div>
-    <script type="text/javascript" src="/js/common.js"></script>
-    <script type="text/javascript" src="/js/lib/layer/layer.js"></script>
-    <script type="text/javascript" src="/js/area.js"></script>
-    <script type="text/javascript" src="/js/verifycode.js"></script>
-    <script type="text/javascript" src="/js/approveInit.js"></script>
+    @Html.Partial("_Header")
+    @RenderBody()
+    @Html.Partial("_Footer")
+    <script type="text/javascript" src="/js/lib/jquery.SuperSlide.2.1.1.js"></script>
+    @await RenderSectionAsync("scripts", false)
 </body>
 </html>
