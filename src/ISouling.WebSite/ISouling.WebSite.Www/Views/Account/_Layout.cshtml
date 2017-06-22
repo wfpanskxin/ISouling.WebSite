@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "../Shared/_Layout";
+    ViewBag.NaviType = 1;
+}
+<div class="bgdesc minwp">
+    <div class="g-mainer wp" style="min-height: 791px;">
+        <div class="m-mainer pt-40 pb-40">
+            <div class="m-access">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript" src="/js/lib/layer/layer.js"></script>
+    <script type="text/javascript" src="/js/lib/icheck.min.js"></script>
+    @await RenderSectionAsync("scripts", false)
+}

@@ -2,8 +2,7 @@
     ViewData["Title"] = Localizer["关于我们"];
     ViewBag.Navi = 2;
 }
-@section head
-{
+@section head{
     <link href="/css/about.css" rel="stylesheet">
 }
 <div class="bgmain minwp">
@@ -14,7 +13,7 @@
             <div class="bgmenu pinned">
                 <div class="m-about-menu wp">
                     <ul class="bd clearfix" id="aboutmenu">
-                        <li id="about_us" class="on"><a href="javascript:;" class="item">关于我们</a></li>
+                        <li id="about_us" class="on"><a asp-action="AboutUs" class="item">关于我们</a></li>
                     </ul>
                 </div>
             </div>

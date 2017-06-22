@@ -1,22 +1,21 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ISouling.WebSite.Www.Data;
+using ISouling.WebSite.Www.Models.AccountViewModels;
 using ISouling.WebSite.Www.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Globalization;
-using ISouling.WebSite.Www.Models.AccountViewModels;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Routing;
 
 namespace ISouling.WebSite.Www
 {
@@ -132,16 +131,10 @@ namespace ISouling.WebSite.Www
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "areacontroller",
-                    template: "{area:exists}/{controller=Home}",
-                    defaults: new { action = "Index" });
-
-                routes.MapRoute(name: "areaaction",
-                    template: "{area:exists}/{action=Index}/{id?}",
-                    defaults: new { controller = "Home" });
-
-                routes.MapRoute(name: "areadefault",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                foreach (var area in new []{"User"})
+                {
+                    MapAreaRoute(routes, area);
+                }
 
                 routes.MapRoute(
                     name: "Enneagram",
@@ -168,6 +161,26 @@ namespace ISouling.WebSite.Www
             // If you want to dispose of resources that have been resolved in the
             // application container, register for the "ApplicationStopped" event.
             appLifetime.ApplicationStopped.Register(() => ApplicationContainer.Dispose());
+        }
+
+        private void MapAreaRoute(IRouteBuilder routes, string area)
+        {
+            routes.MapAreaRoute(
+                name: area + "_controller",
+                areaName: area,
+                template: area + "/{controller=Home}",
+                defaults: new { action = "Index" });
+
+            routes.MapAreaRoute(
+                name: area + "_action",
+                areaName: area,
+                template: area + "/{action=Index}/{id?}",
+                defaults: new { controller = "Home" });
+
+            routes.MapAreaRoute(
+                name: area + "_default",
+                areaName: area,
+                template: area + "/{controller=Home}/{action=Index}/{id?}");
         }
     }
 }

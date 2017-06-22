@@ -1,93 +1,166 @@
-﻿@using System.Collections.Generic
-@using Microsoft.AspNetCore.Http
-@using Microsoft.AspNetCore.Http.Authentication
-@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
+﻿@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
 @model LoginViewModel
 @inject SignInManager<IdentityUser<int>> SignInManager
-
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = Localizer["登录"];
 }
-
-<h2>@ViewData["Title"].</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section>
-            <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Email" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
+<div class="m-login">
+    <div class="m-access-form">
+        <div class="text-r f-14">还不是iSouLing会员?<a asp-action="Register" class="c-blue underline">立即注册</a></div>
+        <div class="m-form3 righttip mt-15">
+            <form id="myform" method="post" onsubmit="return onSubmit();">
+                @Html.AntiForgeryToken()
+                <div class="formitem">
+                    <div class="tticon">
+                        <i class="iconfont"></i>
                     </div>
+                    <input asp-for="Email" type="text" class="input-text Validform_error" onblur="accountCheck()" placeholder="请输入Email">
+                    <p class="input-tip" for="userMobile"><span asp-validation-for="Email" class="errortip">用户名不能为空</span></p>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Password" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
+                <div class="formitem mt-10">
+                    <div class="tticon">
+                        <i class="iconfont"></i>
                     </div>
+                    <input id="password" name="userPassword" type="password" class="input-text icon" maxlength="20" onblur="passwordCheck()" placeholder="请输入密码" onpaste="return false" oncontextmenu="return false" oncopy="return false" oncut="return false" autocomplete="off">
+                    <p class="input-tip" for="userPassword"></p>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            <label asp-for="RememberMe">
-                                <input asp-for="RememberMe" />
-                                @Html.DisplayNameFor(m => m.RememberMe)
-                            </label>
-                        </div>
+                <div class="formitem mt-10">
+                    <div class="tticon"><i class="iconfont"></i></div>
+                    <input type="text" id="randcode" name="randcode" class="input-text hascode Validform_error" placeholder="请输入右边的图形验证码" maxlength="5" onblur="checkRandCode()" autocomplete="off">
+                    <img src="@Url.Action("Captcha", "Home", new { _ = DateTimeOffset.Now.ToUnixTimeMilliseconds() })" id="randImg" alt="" height="34" width="80" onclick="this.src = '@Url.Action("Captcha", "Home")?_=' + Date.now();" class="codepic">
+                    <p class="input-tip" for="randcode"><span class="errortip">图形验证码不能为空</span></p>
+                </div>
+                <div class="l30 pb-10 clearfix mt-10 f-14">
+                    <div class="l">
+                        <div class="u-checkbox-blue2" style="position: relative;">
+                            <input type="checkbox" class="icheck_flat" id="checkbox1" name="remember" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                        </div>&nbsp;
+                        <label for="checkbox1" class="u-icheck-label">记住手机号码</label>
                     </div>
+                    <div class="r"><a asp-action="ForgotPassword">忘记密码?</a></div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-default">Log in</button>
-                    </div>
+                <div>
+                    <input type="submit" id="subbt" class="btn btn-submit" value="安全登录">
                 </div>
-                <p>
-                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
-                </p>
-                <p>
-                    <a asp-action="ForgotPassword">Forgot your password?</a>
-                </p>
+                <div id="error_msg" class="formtip mt-10"></div>
             </form>
-        </section>
+        </div>
     </div>
-    <div class="col-md-4">
-        <section>
-            <h4>Use another service to log in.</h4>
-            <hr />
-            @{
-                var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
-                if (loginProviders.Count == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in loginProviders)
-                                {
-                                    <button type="submit" class="btn btn-default" name="provider" value="@provider.AuthenticationScheme" title="Log in using your @provider.DisplayName account">@provider.AuthenticationScheme</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
+    <div class="m-login-ft c-999 f-14">
+        <img src="/images/main/safe0.png" alt="">&nbsp;&nbsp;您的信息已进行加密保护，数据传输安全
+    </div>
+    <div class="m-access-banner">
+        <div class="bd">
+            <ul>
+                <li><img rel="nofollow" src="/images/main/reg_i_login.jpg"></li>
+            </ul>
+        </div>
     </div>
 </div>
+@section scripts{
+    <script type="text/javascript" src="/js/security/RSA.js"></script>
+    <script type="text/javascript" src="/js/security/BigInt.js"></script>
+    <script type="text/javascript" src="/js/security/Barrett.js"></script>
+    <script type="text/javascript">
+        $(".m-access-banner").slide({
+            titCell: ".hd ul",
+            mainCell: ".bd ul",
+            autoPage: true,
+            autoPlay: true,
+            trigger: "click",
+            interTime: "3000"
+        });
+        //美化单复选框
+        $('input.icheck_flat').iCheck({
+            checkboxClass: 'u-checkbox-blue2',
+            radioClass: 'u-iradio-blue2'
+        });
+        $(document).ready(function () {
+            $('.input-text').change(function () {
+                $('#error_msg').html('');
+            });
+            resetHeight();
+            var account = getCookie("user_account");
+            if (account) {
+                $('#userMobile').val(account);
+                $('#password').focus();
+                $('#checkbox1').iCheck('check');
+            } else {
+                $('#userMobile').focus();
+            }
+        });
+        var isNull = /^[\s]{0,}$/;
 
-@section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+        function accountCheck() {
+            var _input = $("input[name='userMobile']");
+            var _tips = $(".input-tip[for=userMobile]");
+            var name = $.trim(_input.val());
+            _tips.html('');
+
+            if (name == "") {
+                _input.addClass("Validform_error");
+                _tips.html('<span class="errortip">用户名不能为空</span>');
+                return false;
+            }
+            return true;
+        }
+
+        function passwordCheck() {
+            var _input = $("input[name='userPassword']");
+            var _tips = $(".input-tip[for=userPassword]");
+            var name = $.trim(_input.val());
+            _tips.html('');
+            if (name == "") {
+                _input.addClass("Validform_error");
+                _tips.html('<span class="errortip">密码不能为空</span>');
+                return false;
+            }
+            return true;
+        }
+
+        function verifyCheck() {
+            var _input = $("input[name='captcha']");
+            var _tips = $(".input-tip[for=captcha]");
+            var name = $.trim(_input.val());
+            var verifyCodeRex = /^[a-z0-9]{5}$/;
+            _tips.html('');
+            if (name == "") {
+                _input.addClass("Validform_error");
+                _tips.html('<span class="errortip">验证码不能为空</span>');
+                return false;
+            } else if (!verifyCodeRex.test(name)) {
+                _input.addClass("Validform_error");
+                _tips.html('<span class="errortip">请填写正确的验证码</span>');
+                return false;
+            }
+            return true;
+        }
+        //表单提交
+        function onSubmit() {
+            if ($('#checkbox1').is(":checked")) {
+                setCookie('user_account', $('#userMobile').val(), 30);
+            }
+            var _input = $("input[name='userPassword']");
+            var pwd = $.trim(_input.val());
+            if (pwd) {
+                var modulus = $('#modulus').val();
+                var exponent = $('#exponent').val();
+                setMaxDigits(130);
+                var key = new RSAKeyPair(exponent, "", modulus);
+                var result = encryptedString(key, pwd);
+                if (result) {
+                    _input.val(result);
+                }
+            }
+            var flag = false;
+            flag = accountCheck() && passwordCheck();
+            if (flag) {
+                $("#subbt").css({
+                    'color': '#666',
+                    'background': '#ddd'
+                }).attr("disabled", true);
+            }
+            return flag;
+        }
+    </script>
 }

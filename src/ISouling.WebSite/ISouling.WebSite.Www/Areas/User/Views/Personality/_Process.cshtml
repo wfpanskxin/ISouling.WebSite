@@ -1,0 +1,29 @@
+﻿@{
+    Func<int, string> getStep = index => ViewBag.Step > index ? "complete" : (ViewBag.Step == index ? "active" : null);
+}
+<div class="rc_nav">
+    <div id="fuelux-wizard" class="rc_content">
+        <ul class="wizard-steps">
+            <li data-target="#step1" class="@getStep(1)">
+                <span class="step">1</span>
+                <span class="title">自助识别</span>
+            </li>
+            <li data-target="#step2" class="@getStep(2)">
+                <span class="step">2</span>
+                <span class="title">气质形态识别</span>
+            </li>
+            <li data-target="#step3" class="@getStep(3)">
+                <span class="step">3</span>
+                <span class="title">人工识别</span>
+            </li>
+            <li data-target="#step4" class="@getStep(4)">
+                <span class="step">4</span>
+                <span class="title">职业适配识别</span>
+            </li>
+            <li data-target="#step5" class="@getStep(5)">
+                <span class="step">5</span>
+                <span class="title">完成</span>
+            </li>
+        </ul>
+    </div>
+</div>

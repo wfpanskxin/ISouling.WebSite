@@ -11,20 +11,7 @@
     <!-- m-nav 导航栏-->
     <div class="bgfff" id="naver">
         <div class="m-nav h70">
-            <div class="logo">
-                <a href="javascript:;"><img src="/images/main/logo.png" title="iSouLing" class="logo"></a>
-            </div>
-            <ul class="nav">
-                <li class="nLi@(ViewBag.Navi == 0 || ViewBag.Navi == null ? " on" : "")"><a asp-controller="Home" asp-action="Index" class="link">首页</a></li>
-                <li class="nLi@(ViewBag.Navi == 1 ? " on" : "")"><a asp-controller="Enneagram" asp-action="Index" class="link">人格百科</a></li>
-                <li class="nLi@(ViewBag.Navi == 2 ? " on" : "")"><a asp-controller="Home" asp-action="AboutUs" class="link">关于我们</a></li>
-            </ul>
-            <ul class="nav2">
-                <li class="nLi wauto">
-                    <a href="javascript:;" class="btn-theme btn-orange2 mr-5">登录</a>
-                    <a href="javascript:;" class="btn-theme">注册领礼包</a>
-                </li>
-            </ul>
+            @Html.Partial(ViewBag.NaviType == null ? "_Header_Navi" : "_Header_Account")
         </div>
     </div>
 </header>

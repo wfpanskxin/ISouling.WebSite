@@ -1,133 +1,128 @@
 ﻿@{
-    ViewBag.Title = "人格识别";
+    ViewBag.Title = Localizer["人格识别"];
 }
-<div class="main_container">
-    <div class="main_content">
-        <div class="rc_nav">
-            <div id="fuelux-wizard" class="rc_content">
-                <ul class="wizard-steps">
-                    <li data-target="#step1" class="active">
-                        <span class="step">1</span>
-                        <span class="title">实名认证</span>
-                    </li>
-                    <li data-target="#step2">
-                        <span class="step">2</span>
-                        <span class="title">支付服务费</span>
-                    </li>
-                    <li data-target="#step3">
-                        <span class="step">3</span>
-                        <span class="title">绑定银行卡</span>
-                    </li>
-                    <li data-target="#step4">
-                        <span class="step">4</span>
-                        <span class="title">设置支付密码</span>
-                    </li>
-                    <li data-target="#step5">
-                        <span class="step">5</span>
-                        <span class="title">完成</span>
-                    </li>
-                </ul>
-            </div>
+<div class="main_content">
+    <div class="rc_nav">
+        <div id="fuelux-wizard" class="rc_content">
+            <ul class="wizard-steps">
+                <li data-target="#step1" class="active">
+                    <span class="step">1</span>
+                    <span class="title">实名认证</span>
+                </li>
+                <li data-target="#step2">
+                    <span class="step">2</span>
+                    <span class="title">支付服务费</span>
+                </li>
+                <li data-target="#step3">
+                    <span class="step">3</span>
+                    <span class="title">绑定银行卡</span>
+                </li>
+                <li data-target="#step4">
+                    <span class="step">4</span>
+                    <span class="title">设置支付密码</span>
+                </li>
+                <li data-target="#step5">
+                    <span class="step">5</span>
+                    <span class="title">完成</span>
+                </li>
+            </ul>
         </div>
-        <div class="con_page">
-            <div class="con_page_l">
-                <div class="m-updatelevel">
-                    <div class="u-header j-header">
-                        <p><span><i></i>/5</span></p>
-                        <h5>升级高级用户</h5>
-                        <div class="s_divide"></div>
-                    </div>
-                    <div class="infoCon">
-                        <p>
-                            您需要提供：
-                            <br>1，服务费：600元／年
-                            <br>2，身份实名认证
-                        </p>
-                        <p>
-                            享有平台全功能权限：
-                            <br>1，气质和人工识别权限
-                            <br>2，与他人性格配对和适配搜索权限
-                            <br>3，享有招聘功能使用权限
-                            <br>4，享有渠道代理权，市场推广和渠道返佣
-                            <br>5，享有拓展如下对象的权益：用户、企业、商户、心理咨询师、心灵导师、生涯规划师、培训师，及相关服务机构等等
-                        </p>
-                    </div>
-                    <div class="infoPic">
-                        <img src="/images/pic_1.jpg">
-                    </div>
+    </div>
+    <div class="con_page">
+        <div class="con_page_l">
+            <div class="m-updatelevel">
+                <div class="u-header j-header">
+                    <p><span><i></i>/5</span></p>
+                    <h5>升级高级用户</h5>
+                    <div class="s_divide"></div>
+                </div>
+                <div class="infoCon">
+                    <p>
+                        您需要提供：
+                        <br>1，服务费：600元／年
+                        <br>2，身份实名认证
+                    </p>
+                    <p>
+                        享有平台全功能权限：
+                        <br>1，气质和人工识别权限
+                        <br>2，与他人性格配对和适配搜索权限
+                        <br>3，享有招聘功能使用权限
+                        <br>4，享有渠道代理权，市场推广和渠道返佣
+                        <br>5，享有拓展如下对象的权益：用户、企业、商户、心理咨询师、心灵导师、生涯规划师、培训师，及相关服务机构等等
+                    </p>
+                </div>
+                <div class="infoPic">
+                    <img src="/images/pic_1.jpg">
                 </div>
             </div>
-            <div class="con_page_r">
-                <div class="mu-user">
-                    <div class="m-form2 title120 pt-10 pb-50">
-                        <form action="" id="form1" method="post" class="c-666 centermain">
-                            <div class="formitem mt-10">
-                                <label class="input-title"><span class="red">*</span> 邮箱：</label>
-                                <input type="text" class="input-text" name="email" id="email" onblur="checkEmail()" placeholder="请输入您的邮箱">
-                                <p class="input-tip" for="email"></p>
+        </div>
+        <div class="con_page_r">
+            <div class="mu-user">
+                <div class="m-form2 title120 pt-10 pb-50">
+                    <form action="" id="form1" method="post" class="c-666 centermain">
+                        <div class="formitem mt-10">
+                            <label class="input-title"><span class="red">*</span> 邮箱：</label>
+                            <input type="text" class="input-text" name="email" id="email" onblur="checkEmail()" placeholder="请输入您的邮箱">
+                            <p class="input-tip" for="email"></p>
+                        </div>
+                        <div class="formitem mt-10">
+                            <label class="input-title"><span class="red">*</span> 手机号：</label>
+                            <input type="text" class="input-text" name="mobile" id="mobile" onblur="checkMobile()" placeholder="请输入您的手机号">
+                            <p class="input-tip" for="mobile"></p>
+                        </div>
+                        <div class="formitem mt-10">
+                            <label class="input-title"><span class="red">*</span> 短信验证码：</label>
+                            <input type="text" class="input-text input-code" id="code" name="code" maxlength="6" autocomplete="off" onblur="checkCode()" placeholder="请输入短信码" onpaste="return false">
+                            <button type="button" class="btn btn-code" id="getVerifyCode">获取短信验证码</button>
+                            <p class="input-tip" for="code"></p>
+                        </div>
+                        <div class="formitem mt-10">
+                            <label class="input-title"><span class="red">*</span> 姓名：</label>
+                            <input type="text" class="input-text" name="realName" id="realName" onblur="checkName()" placeholder="请输入您的姓名">
+                            <p class="input-tip" for="realName"></p>
+                        </div>
+                        <div class="formitem mt-10">
+                            <label class="input-title"><span class="red">*</span> 职业：</label>
+                            <input type="text" class="input-text" name="occupation" id="occupation" onblur="checkOccupation()" placeholder="请输入您当前的职业">
+                            <p class="input-tip" for="occupation"></p>
+                        </div>
+                        <div class="formitem mt-10">
+                            <label class="input-title"><span class="red">*</span> 所在地：</label>
+                            <div class="rowinput" id="area">
+                                <select class="select" name="sheng" id="sheng" style="width:72px;" onblur="checkAreas()"></select>
+                                <select class="select" name="shi" id="shi" style="width:72px;" onblur="checkAreas()"></select>
+                                <select class="select" name="xian" id="xian" style="width:72px;" onblur="checkAreas()"></select>
                             </div>
-                            <div class="formitem mt-10">
-                                <label class="input-title"><span class="red">*</span> 手机号：</label>
-                                <input type="text" class="input-text" name="mobile" id="mobile" onblur="checkMobile()" placeholder="请输入您的手机号">
-                                <p class="input-tip" for="mobile"></p>
-                            </div>
-                            <div class="formitem mt-10">
-                                <label class="input-title"><span class="red">*</span> 短信验证码：</label>
-                                <input type="text" class="input-text input-code" id="code" name="code" maxlength="6" autocomplete="off" onblur="checkCode()" placeholder="请输入短信码" onpaste="return false">
-                                <button type="button" class="btn btn-code" id="getVerifyCode">获取短信验证码</button>
-                                <p class="input-tip" for="code"></p>
-                            </div>
-                            <div class="formitem mt-10">
-                                <label class="input-title"><span class="red">*</span> 姓名：</label>
-                                <input type="text" class="input-text" name="realName" id="realName" onblur="checkName()" placeholder="请输入您的姓名">
-                                <p class="input-tip" for="realName"></p>
-                            </div>
-                            <div class="formitem mt-10">
-                                <label class="input-title"><span class="red">*</span> 职业：</label>
-                                <input type="text" class="input-text" name="occupation" id="occupation" onblur="checkOccupation()" placeholder="请输入您当前的职业">
-                                <p class="input-tip" for="occupation"></p>
-                            </div>
-                            <div class="formitem mt-10">
-                                <label class="input-title"><span class="red">*</span> 所在地：</label>
-                                <div class="rowinput" id="area">
-                                    <select class="select" name="sheng" id="sheng" style="width:72px;" onblur="checkAreas()"></select>
-                                    <select class="select" name="shi" id="shi" style="width:72px;" onblur="checkAreas()"></select>
-                                    <select class="select" name="xian" id="xian" style="width:72px;" onblur="checkAreas()"></select>
-                                </div>
-                                <div class="rowtips" for="area"></div>
-                            </div>
-                            <div class="formitem mt-10">
-                                <label class="input-title"><span class="red">*</span> 身份证号：</label>
-                                <input type="text" class="input-text" name="personId" id="personId" onblur="checkPersonId()" placeholder="请输入您的身份证号码">
-                                <p class="input-tip" for="personId"></p>
-                            </div>
-                            <div class="formitem mt-10">
-                                <label class="input-title"><span class="red">*</span> 身份证正反面：</label>
-                                <a href="javascript:;" class="plascard"><i></i></a>
-                            </div>
-                            <div class="formitem mt-10">
-                                <label class="input-title"><span class="red">*</span> 手持身份证照：</label>
-                                <a href="javascript:;" class="plascard"><i></i></a>
-                            </div>
-                            <div class="formitem mt-10">
-                                <p class="checkbox">
-                                    <input type="checkbox" name="readed" value="1" checked="checked" style="display:none;" />
-                                    <label class="checkbox checked radioItem" data-name="readed" data-checkedCls="checked"></label>
-                                    <label class="wykg">同意</label>
-                                    <a href="javascript:;">iSouLing 高级用户服务协议政策</a>
-                                </p>
-                            </div>
-                            <div class="formitem mt-20">
-                                <button type="button" class="btn btn-submit" id="subButton" onclick="onSubmit()">提交申请</button>
-                                <p class="input-tip" for="form1"></p>
-                            </div>
-                        </form>
-                    </div>
+                            <div class="rowtips" for="area"></div>
+                        </div>
+                        <div class="formitem mt-10">
+                            <label class="input-title"><span class="red">*</span> 身份证号：</label>
+                            <input type="text" class="input-text" name="personId" id="personId" onblur="checkPersonId()" placeholder="请输入您的身份证号码">
+                            <p class="input-tip" for="personId"></p>
+                        </div>
+                        <div class="formitem mt-10">
+                            <label class="input-title"><span class="red">*</span> 身份证正反面：</label>
+                            <a href="javascript:;" class="plascard"><i></i></a>
+                        </div>
+                        <div class="formitem mt-10">
+                            <label class="input-title"><span class="red">*</span> 手持身份证照：</label>
+                            <a href="javascript:;" class="plascard"><i></i></a>
+                        </div>
+                        <div class="formitem mt-10">
+                            <p class="checkbox">
+                                <input type="checkbox" name="readed" value="1" checked="checked" style="display:none;" />
+                                <label class="checkbox checked radioItem" data-name="readed" data-checkedCls="checked"></label>
+                                <label class="wykg">同意</label>
+                                <a href="javascript:;">iSouLing 高级用户服务协议政策</a>
+                            </p>
+                        </div>
+                        <div class="formitem mt-20">
+                            <button type="button" class="btn btn-submit" id="subButton" onclick="onSubmit()">提交申请</button>
+                            <p class="input-tip" for="form1"></p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="main_menu">
-   @Html.Partial("_Menu")
 </div>
