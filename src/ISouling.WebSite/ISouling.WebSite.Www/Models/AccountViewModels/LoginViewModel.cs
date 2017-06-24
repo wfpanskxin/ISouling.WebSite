@@ -18,5 +18,8 @@ namespace ISouling.WebSite.Www.Models.AccountViewModels
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        [Required]
+        public string Captcha { get; set; }
     }
 }

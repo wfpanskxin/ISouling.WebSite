@@ -6,41 +6,48 @@
 }
 <div class="m-login">
     <div class="m-access-form">
-        <div class="text-r f-14">还不是iSouLing会员?<a asp-action="Register" class="c-blue underline">立即注册</a></div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="text-r f-14">还不是iSouLing会员?<a asp-action="Register" class="c-blue underline">立即注册</a>
+        </div>
         <div class="m-form3 righttip mt-15">
-            <form id="myform" method="post" onsubmit="return onSubmit();">
+            <form method="post">
                 @Html.AntiForgeryToken()
                 <div class="formitem">
                     <div class="tticon">
                         <i class="iconfont"></i>
                     </div>
-                    <input asp-for="Email" type="text" class="input-text Validform_error" onblur="accountCheck()" placeholder="请输入Email">
-                    <p class="input-tip" for="userMobile"><span asp-validation-for="Email" class="errortip">用户名不能为空</span></p>
+                    <input asp-for="Email" type="text" class="input-text" placeholder="@Localizer["请输入Email"]">
+                    <p class="input-tip" asp-for="Email"><span asp-validation-for="Email" class="errortip"></span>
+                    </p>
                 </div>
                 <div class="formitem mt-10">
                     <div class="tticon">
                         <i class="iconfont"></i>
                     </div>
-                    <input id="password" name="userPassword" type="password" class="input-text icon" maxlength="20" onblur="passwordCheck()" placeholder="请输入密码" onpaste="return false" oncontextmenu="return false" oncopy="return false" oncut="return false" autocomplete="off">
-                    <p class="input-tip" for="userPassword"></p>
+                    <input asp-for="Password" type="password" class="input-text icon" maxlength="20" placeholder="@Localizer["请输入密码"]" onpaste="return false" oncontextmenu="return false" oncopy="return false" oncut="return false" autocomplete="off">
+                    <p class="input-tip" asp-for="Password"><span asp-validation-for="Password" class="errortip"></span>
+                    </p>
                 </div>
                 <div class="formitem mt-10">
-                    <div class="tticon"><i class="iconfont"></i></div>
-                    <input type="text" id="randcode" name="randcode" class="input-text hascode Validform_error" placeholder="请输入右边的图形验证码" maxlength="5" onblur="checkRandCode()" autocomplete="off">
-                    <img src="@Url.Action("Captcha", "Home", new { _ = DateTimeOffset.Now.ToUnixTimeMilliseconds() })" id="randImg" alt="" height="34" width="80" onclick="this.src = '@Url.Action("Captcha", "Home")?_=' + Date.now();" class="codepic">
-                    <p class="input-tip" for="randcode"><span class="errortip">图形验证码不能为空</span></p>
+                    <div class="tticon"><i class="iconfont"></i>
+                    </div>
+                    <input asp-for="Captcha" type="text" class="input-text hascode" placeholder="@Localizer["请输入右边的图形验证码"]" maxlength="6" autocomplete="off">
+                    <img src="@Url.Action("Captcha", "Home", new {_ = DateTimeOffset.Now.ToUnixTimeMilliseconds()})" id="randImg" alt="" height="34" width="80" onclick="this.src = '@Url.Action("Captcha", "Home")?_=' + Date.now();" class="codepic">
+                    <p class="input-tip" asp-for="Captcha"><span asp-validation-for="Password" class="errortip"></span>
+                    </p>
                 </div>
                 <div class="l30 pb-10 clearfix mt-10 f-14">
                     <div class="l">
                         <div class="u-checkbox-blue2" style="position: relative;">
-                            <input type="checkbox" class="icheck_flat" id="checkbox1" name="remember" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                            <input asp-for="RememberMe" type="checkbox" class="icheck_flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                         </div>&nbsp;
-                        <label for="checkbox1" class="u-icheck-label">记住手机号码</label>
+                        <label asp-for="RememberMe" class="u-icheck-label">记住手机号码</label>
                     </div>
-                    <div class="r"><a asp-action="ForgotPassword">忘记密码?</a></div>
+                    <div class="r"><a asp-action="ForgotPassword">忘记密码?</a>
+                    </div>
                 </div>
                 <div>
-                    <input type="submit" id="subbt" class="btn btn-submit" value="安全登录">
+                    <input type="submit" class="btn btn-submit" value="安全登录">
                 </div>
                 <div id="error_msg" class="formtip mt-10"></div>
             </form>
@@ -58,6 +65,7 @@
     </div>
 </div>
 @section scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial");
     <script type="text/javascript" src="/js/security/RSA.js"></script>
     <script type="text/javascript" src="/js/security/BigInt.js"></script>
     <script type="text/javascript" src="/js/security/Barrett.js"></script>
