@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
   <PropertyGroup>
     <UserSecretsId>aspnet-ISouling.WebSite.Www-1afde6c6-b679-42f1-9426-7065d2718279</UserSecretsId>
@@ -148,6 +148,7 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ISouling.Component\ISouling.Component.Drawing\ISouling.Component.Drawing.csproj" />
     <ProjectReference Include="..\..\ISouling.Component\ISouling.Component.User\ISouling.Component.User.csproj" />
     <ProjectReference Include="..\..\ISouling\ISouling.csproj" />
   </ItemGroup>

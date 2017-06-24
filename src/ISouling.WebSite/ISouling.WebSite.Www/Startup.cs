@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Globalization;
+using System.Reflection;
 using Microsoft.AspNetCore.Routing;
 
 namespace ISouling.WebSite.Www
@@ -62,10 +63,10 @@ namespace ISouling.WebSite.Www
                 .AddDataAnnotationsLocalization(options =>
                 {
                     options.DataAnnotationLocalizerProvider = (type, factory) =>
-
                     {
-                        if (type.IsSubclassOf(typeof(RegisterViewModel)))
+                        if (type.GetTypeInfo().IsSubclassOf(typeof(RegisterViewModel)))
                             return factory.Create(typeof(RegisterViewModel));
+
                         return factory.Create(type);
                     };
                 });
@@ -131,7 +132,7 @@ namespace ISouling.WebSite.Www
 
             app.UseMvc(routes =>
             {
-                foreach (var area in new []{"User"})
+                foreach (var area in new[] { "User" })
                 {
                     MapAreaRoute(routes, area);
                 }
