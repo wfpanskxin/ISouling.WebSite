@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using ISouling.WebSite.Www.Models.AccountViewModels;
 using ISouling.WebSite.Www.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using ISouling.Component.User;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 
 namespace ISouling.WebSite.Www.Controllers
@@ -373,7 +375,7 @@ namespace ISouling.WebSite.Www.Controllers
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return RedirectToAction(nameof( ResetPasswordConfirmation), "Account");
+                return RedirectToAction(nameof(ResetPasswordConfirmation), "Account");
             }
             var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
             if (result.Succeeded)
@@ -525,5 +527,25 @@ namespace ISouling.WebSite.Www.Controllers
         }
 
         #endregion Helpers
+
+        public async Task<ActionResult> SendCaptch(string email, string captch)
+        {
+            var code = new Random().Next(1000000).ToString("000000");
+
+            HttpContext.Session.SetString("EmailCode", code);
+
+            try
+            {
+                await _emailSender.SendEmailAsync(email, "ISouling注册验证码", code);
+
+                return Json(true);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(1, e, "验证码发送失败");
+            }
+
+            return Json(false);
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ISouling.Component.SystemFramework;
 
 namespace ISouling.WebSite.Www.Services
 {
@@ -13,7 +14,7 @@ namespace ISouling.WebSite.Www.Services
         public Task SendEmailAsync(string email, string subject, string message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            return MessageHelper.SendEmailAsync(email, subject, message);
         }
 
         public Task SendSmsAsync(string number, string message)

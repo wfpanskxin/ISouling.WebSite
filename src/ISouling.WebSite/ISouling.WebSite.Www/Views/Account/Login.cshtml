@@ -1,13 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Identity.EntityFrameworkCore
 @model LoginViewModel
-@inject SignInManager<IdentityUser<int>> SignInManager
 @{
     ViewData["Title"] = Localizer["登录"];
 }
 <div class="m-login">
     <div class="m-access-form">
         <div asp-validation-summary="All" class="text-danger"></div>
-        <div class="text-r f-14">还不是iSouLing会员?<a asp-action="Register" class="c-blue underline">立即注册</a>
+        <div class="text-r f-14">
+            还不是iSouLing会员?<a asp-action="Register" class="c-blue underline">立即注册</a>
         </div>
         <div class="m-form3 righttip mt-15">
             <form method="post">
@@ -17,7 +17,8 @@
                         <i class="iconfont"></i>
                     </div>
                     <input asp-for="Email" type="text" class="input-text" placeholder="@Localizer["请输入Email"]">
-                    <p class="input-tip" asp-for="Email"><span asp-validation-for="Email" class="errortip"></span>
+                    <p class="input-tip" asp-for="Email">
+                        <span asp-validation-for="Email" class="errortip"></span>
                     </p>
                 </div>
                 <div class="formitem mt-10">
@@ -25,15 +26,18 @@
                         <i class="iconfont"></i>
                     </div>
                     <input asp-for="Password" type="password" class="input-text icon" maxlength="20" placeholder="@Localizer["请输入密码"]" onpaste="return false" oncontextmenu="return false" oncopy="return false" oncut="return false" autocomplete="off">
-                    <p class="input-tip" asp-for="Password"><span asp-validation-for="Password" class="errortip"></span>
+                    <p class="input-tip" asp-for="Password">
+                        <span asp-validation-for="Password" class="errortip"></span>
                     </p>
                 </div>
                 <div class="formitem mt-10">
-                    <div class="tticon"><i class="iconfont"></i>
+                    <div class="tticon">
+                        <i class="iconfont"></i>
                     </div>
                     <input asp-for="Captcha" type="text" class="input-text hascode" placeholder="@Localizer["请输入右边的图形验证码"]" maxlength="6" autocomplete="off">
                     <img src="@Url.Action("Captcha", "Home", new {_ = DateTimeOffset.Now.ToUnixTimeMilliseconds()})" id="randImg" alt="" height="34" width="80" onclick="this.src = '@Url.Action("Captcha", "Home")?_=' + Date.now();" class="codepic">
-                    <p class="input-tip" asp-for="Captcha"><span asp-validation-for="Password" class="errortip"></span>
+                    <p class="input-tip" asp-for="Captcha">
+                        <span asp-validation-for="Password" class="errortip"></span>
                     </p>
                 </div>
                 <div class="l30 pb-10 clearfix mt-10 f-14">
@@ -43,7 +47,8 @@
                         </div>&nbsp;
                         <label asp-for="RememberMe" class="u-icheck-label">记住手机号码</label>
                     </div>
-                    <div class="r"><a asp-action="ForgotPassword">忘记密码?</a>
+                    <div class="r">
+                        <a asp-action="ForgotPassword">忘记密码?</a>
                     </div>
                 </div>
                 <div>

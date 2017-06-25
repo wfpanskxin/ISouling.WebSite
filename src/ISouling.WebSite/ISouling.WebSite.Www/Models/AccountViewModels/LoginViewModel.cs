@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using ISouling.Component.Web;
 
 namespace ISouling.WebSite.Www.Models.AccountViewModels
 {
@@ -20,6 +21,7 @@ namespace ISouling.WebSite.Www.Models.AccountViewModels
         public bool RememberMe { get; set; }
 
         [Required]
+        [Captcha]
         public string Captcha { get; set; }
     }
 }

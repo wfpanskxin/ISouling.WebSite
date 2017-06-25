@@ -149,7 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ISouling.Component\ISouling.Component.Drawing\ISouling.Component.Drawing.csproj" />
+    <ProjectReference Include="..\..\ISouling.Component\ISouling.Component.SystemFramework\ISouling.Component.SystemFramework.csproj" />
     <ProjectReference Include="..\..\ISouling.Component\ISouling.Component.User\ISouling.Component.User.csproj" />
+    <ProjectReference Include="..\..\ISouling.Component\ISouling.Component.Web\ISouling.Component.Web.csproj" />
     <ProjectReference Include="..\..\ISouling\ISouling.csproj" />
   </ItemGroup>
   <ItemGroup>

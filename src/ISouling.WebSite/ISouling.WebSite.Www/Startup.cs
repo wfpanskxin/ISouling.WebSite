@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +17,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Globalization;
 using System.Reflection;
-using Microsoft.AspNetCore.Routing;
 
 namespace ISouling.WebSite.Www
 {
@@ -81,7 +81,7 @@ namespace ISouling.WebSite.Www
             // to dispose of the container at the end of the app,
             // be sure to keep a reference to it as a property or field.
             builder.RegisterType<AuthMessageSender>().AsImplementedInterfaces();
-            builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>();
+            builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>().SingleInstance();
             builder.Populate(services);
 
             // Create the IServiceProvider based on the container.
@@ -91,10 +91,12 @@ namespace ISouling.WebSite.Www
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime appLifetime)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime appLifetime, IHttpContextAccessor httpContextAccessor)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            ISouling.Component.Web.HttpContext.Configure(httpContextAccessor);
 
             var supportedCultures = new[]
             {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ISouling.Component.Web;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ISouling.WebSite.Www.Controllers
 {

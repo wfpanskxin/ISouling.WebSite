@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace ISouling.WebSite.Www
+namespace ISouling.Component.Web
 {
     public class CaptchaResult : IActionResult
     {
@@ -20,6 +20,6 @@ namespace ISouling.WebSite.Www
             return Task.CompletedTask;
         }
 
-        public static string Name { get; } = "__Captcha__";
+        internal static string Name { get; } = "__Captcha__";
     }
 }
